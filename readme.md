@@ -2,19 +2,18 @@
 ![pyper](https://i.imgur.com/wx5TQ7o.jpg)
 **PYPER** is a **Py**thon-based, 3D-**P**rinted, **E**lectric **R**over. 
 
-I designed PYPER from the ground up - I used [Blender](https://www.blender.org/) for 3D-modeling of the platform, steering mechanism, and drivetrain, printed [these parts]() on my [Creality Ender 3 3D Printer](https://www.creality.com/products/ender-3-3d-printer), designed the [electrical circuitry](wiring.drawio), and wrote [the code](./src/) that coordinates its driving mechanics
+I designed PYPER from scratch from the ground up - I used [Blender](https://www.blender.org/) for 3D-modeling of the chassis, steering mechanism, and drivetrain, printed [the parts](https://www.thingiverse.com/thing:6352166) on my [Creality Ender 3 3D Printer](https://www.creality.com/products/ender-3-3d-printer), designed the [electrical circuitry](wiring.drawio), and wrote [the code](./src/) that coordinates its driving mechanics
 
-The project is fully open source. All code is available here. I am working now on listing all of the 3D-printed components on Thingiverse.
+The project is fully open source under the [**Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International** license](https://creativecommons.org/licenses/by-nc-sa/4.0/). The source code that runs on an onboard Raspberry Pi is available [here](./src/) and the 3D-printed parts (.stl files) can be found [on Thingiverse here](https://www.thingiverse.com/thing:6352166).
 
-### PYPER Specifications
-|Spec|Value|
-|-|-|
-|Weight|125g?|
-|Top Speed (@ 5V)||
-|Dimensions|173x213x76 mm (WxLxH)|
-|Total Cost to Build|Roughly $28.66|
+Some more information about PYPER:
+- Weigth: 125g?
+- Top speed (@ 5V): ?
+- Dimensions: 173x213x76 mm (WxLxH)
+- Total Cost to build (estimate): $28.66
+- Final drive gear ratio: 
 
-## What You Need to Build PYPER
+## Parts List: What You Need to Build PYPER
 |Part|Cost (USD)|
 |-|-|
 |~110g of [PLA filament](https://www.amazon.com/gp/product/B0BM73MC94/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&th=1) (20% infill used)|$1.76|
@@ -29,8 +28,8 @@ The project is fully open source. All code is available here. I am working now o
 |22 [M2 and M3 Screws, Bolts, Washers (see below)](https://www.amazon.com/gp/product/B07FCDL2SY/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&th=1)|< $2.00|
 |Misc Wires|< $1.00|
 
-## PYPER's Parts Explained
-All of the 3D-printed parts needed to make PYPER are available [on Thingiverse]() for free. Each part and its role is described below:
+## PYPER's 3D-Printed Parts Explained
+All of the 3D-printed parts needed to make PYPER are available [on Thingiverse](https://www.thingiverse.com/thing:6352166) for free. Each part and its role is described below:
 |Image|Part|Function|Role|
 |-|-|-|-|
 |![img](https://cdn.thingiverse.com/assets/9d/60/7c/95/b9/medium_preview_5398b511-00ff-4f4c-9d4a-e6842469ae3d.png)|base.stl|chassis|The platform everything is built on top of|
