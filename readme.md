@@ -98,6 +98,12 @@ These are the specific needs for these screws in PYPER's design:
 - `steer`: % steering to apply. from **-1.0** for full left hand steering to **1.0** for full right hand steering
 - `duration`: duration this movement command should last for, in seconds (optional)
 
+## Clips from Development
+I routinely took small clips during PYPER's development, demonstrating each part of the design. I'm listing them here for learning purposes, in case you want to study a specific piece:
+- [Assembling 3D-printed steering system](https://www.youtube.com/shorts/D8oKYiKBxoA)
+- [Drivetrain Closeup demonstration](https://youtube.com/shorts/8eYT_Qdbzhs)
+- [Servo actuating steering angle](https://youtube.com/shorts/jCH9cWKqCqs)
+
 ## To include in project on Thingiverse:
 - hardware
     - ~~Total grams of filament used~~
