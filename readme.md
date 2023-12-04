@@ -30,7 +30,7 @@ The project is fully open source. All code is available here. I am working now o
 |Misc Wires|< $1.00|
 
 ## PYPER's Parts Explained
-Parts are provided [on Thingiverse]() as STL files. Each part and its role is described below:
+All of the 3D-printed parts needed to make PYPER are available [on Thingiverse]() for free. Each part and its role is described below:
 |Image|Part|Function|Role|
 |-|-|-|-|
 |![img]()|base.stl|chassis|The platform everything is built on top of|
@@ -56,6 +56,12 @@ Parts are provided [on Thingiverse]() as STL files. Each part and its role is de
 ![drivetrain: Mid Axle](https://i.imgur.com/G4dgbnp.png)
 ![drivetrain: Final Drive](https://i.imgur.com/nbxdLVr.png)
 
+### Post-Printing
+- You will need to insert a MR115-2RS (5x11x4mm) bearing into the following parts after printing. Each part is designed to accept the bearing with little friction, but you may need to use a mallet/hammer to bang the bearing in.
+    - `mid_axle_gear.stl`
+    - `bearing_mount.stl`
+    - `wheel_front.stl`
+- After printing the parts gears, you may need to slightly sand down some of the teeth of each gear so they mesh well against one another.
 
 ## Screws Needed to Put it all together
 - 2 M3*30mm for steering upright
