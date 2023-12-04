@@ -36,7 +36,7 @@ All of the 3D-printed parts needed to make PYPER are available [on Thingiverse](
 |![img](https://cdn.thingiverse.com/assets/9d/60/7c/95/b9/medium_preview_5398b511-00ff-4f4c-9d4a-e6842469ae3d.png)|base.stl|chassis|The platform everything is built on top of|
 |![img](https://cdn.thingiverse.com/assets/f7/66/b3/5b/50/medium_preview_6fd4d756-b786-453c-ac86-6043ff345644.png)|wheel_front.stl|chassis|The two front wheels to the rover|
 |![img](https://cdn.thingiverse.com/assets/f4/13/2c/d6/84/medium_preview_a9383307-72aa-4795-97be-d7945f37b2d2.png)|wheel_rear.stl|chassis|The two rear wheels to the rover|
-|![img]()|hubcap_front.stl|chassis|Hubcap for the front wheels|
+|![img](https://i.imgur.com/PHBrIim.png)|hubcap_front.stl|chassis|Hubcap for the front wheels|
 |![img](https://cdn.thingiverse.com/assets/89/0d/0f/c9/be/medium_preview_d2ce201d-1621-40b9-8620-3bc202a74c32.png)|hubcap_rear.stl|chassis|Hubcap for the rear wheels|
 |![img](https://cdn.thingiverse.com/assets/f2/b0/72/a3/81/medium_preview_2abca809-7e6a-4407-85b1-dbd96e63e2d9.png)|steering_upright_right.stl|steering|Mounting the front right wheel to this allows the wheel to "pivot" to accomodate a steering angle, controlled by the servo|
 |![img](https://cdn.thingiverse.com/assets/85/64/72/f9/5f/medium_preview_feedb94a-3ae1-473e-a5f9-0aab0a3ab826.png)|steering_upright_left.stl|steering|Mounting the front left wheel to this allows the wheel to "pivot" to accomodate a steering angle, controlled by the servo|
@@ -44,9 +44,9 @@ All of the 3D-printed parts needed to make PYPER are available [on Thingiverse](
 |![img](https://cdn.thingiverse.com/assets/1d/8a/d8/64/b7/medium_preview_8304275a-9adf-4cd3-9414-05dd9bf7d918.png)|tt_frame.stl|drivetrain|A frame that fits around the TT motor so it can be mounted to the chassis (base)|
 |![img](https://cdn.thingiverse.com/assets/48/66/53/32/fc/medium_preview_249689cf-7534-483e-8abe-a1d6b079cf0a.png)|motor_gear.stl|drivetrain|Fits snuggly around the TT motor's axle, transfering its torque into the drivetrain|
 |![img](https://cdn.thingiverse.com/assets/11/08/12/99/94/medium_preview_d6b55c69-e47a-4c46-98dd-f7671e345f68.png)|mid_axle_gear.stl|drivetrain|Meshes against the **motor_gear.stl**, being driven by the motor gear|
-|![img]()|mid_axle.stl|drivetrain|Serves to hold two mid axle gears in place along their axis, allowing them to spin freely|
+|![img](https://i.imgur.com/vs2SYBJ.png)|mid_axle.stl|drivetrain|Serves to hold two mid axle gears in place along their axis, allowing them to spin freely|
 |![img](https://cdn.thingiverse.com/assets/01/10/5d/7e/bc/medium_preview_3e8ef466-5e44-4490-94a1-9f52d1d24662.png)|mid_axle_mount.stl|drivetrain|Holds the **mid_axle.stl** in place securely, allowing the mid axle gears to mesh with both the motor gears and drive axle gears|
-|![img]()|drive_axle_gear.stl|drivetrain|Meshes against the two **mid_axle_gear.stl**, transfering torque to the final drive, turning the rear wheels|
+|![img](https://i.imgur.com/sJ9wxK4.png)|drive_axle_gear.stl|drivetrain|Meshes against the two **mid_axle_gear.stl**, transfering torque to the final drive, turning the rear wheels|
 |![img](https://cdn.thingiverse.com/assets/1a/ba/19/19/34/medium_preview_6a1d7751-3c5a-47ce-84ba-68fccc894def.png)|drive_axle.stl|drivetrain|Final drive axle. Transfers torque from the two **drive_axle_gear.stl** to the rear wheels, moving the rover forward or backward|
 |![img](https://cdn.thingiverse.com/assets/57/f0/64/40/fa/medium_preview_ea64d320-9ecc-4ca9-8326-a7cd56e01cfd.png)|bearing_mount.stl|drivetrain|Holds the **drive_axle.stl** in place, meshing with the two **mid_axle_gear.stl**, and allowing it to spin freely while also supporting the weight of the chassis|
 
