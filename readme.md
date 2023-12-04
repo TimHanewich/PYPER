@@ -32,6 +32,7 @@
     - Explanation of each part. i.e. compare front + rear hub cap differences
     - Why I made this: basic fundamentals of driving
     - The type of steering system it uses
+    - Wiring diagram is supplied as draw.io (and add picture to readme)
 - software
     - how the code works
     - rover control method (HTTP requests)
