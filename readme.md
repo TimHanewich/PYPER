@@ -61,7 +61,7 @@ All of the 3D-printed parts needed to make PYPER are available [on Thingiverse](
     - `mid_axle_gear.stl`
     - `bearing_mount.stl`
     - `wheel_front.stl`
-- After printing the parts gears, you may need to slightly sand down some of the teeth of each gear so they mesh well against one another.
+- After printing the gears, you may need to slightly sand down some of the teeth of each gear so they mesh well against one another.
 
 ## Screws Needed to Put it all together
 - 2 M3*30mm for steering upright
