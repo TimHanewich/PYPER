@@ -4,6 +4,21 @@
 
 The project is fully open source. All code is available here. I am working now on listing all of the 3D-printed components on Thingiverse.
 
+## What You Need to Build PYPER
+|Part|Cost (USD)|
+|-|-|
+|~110g of PLA filament (20% infill used)|$1.76|
+|1 Raspberry Pi Pico W||
+|1 SG-90 Servo Motor||
+|1 [TT Motor](https://www.amazon.com/gp/product/B09N6NXP4H/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1)|$1.47|
+|1 1S Lithium Polymer Battery||
+|1 MT3608 DC-DC Boost Converter||
+|8 MR115-2RS (5x11x4mm) Bearings||
+|1 L293D DC Brushed Motor Driver||
+|1 Small Breadboard||
+|M2 and M3 Screws, Bolts, Washers||
+|Misc Wires||
+
 ## Movement Command
 ```
 {
