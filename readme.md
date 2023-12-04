@@ -1,6 +1,8 @@
 # PYPER - **Py**thon-Based 3D-**P**rinted **E**lectric **R**over
 ![pyper](https://i.imgur.com/wx5TQ7o.jpg)
-**PYPER** is a **Py**thon-based, 3D-**P**rinted, **E**lectric **R**over. I designed PYPER from the ground up: mechanical design of the drivetrain and steering mechanism, circuitry for the electronics, and software that runs PYPER.
+**PYPER** is a **Py**thon-based, 3D-**P**rinted, **E**lectric **R**over. 
+
+I designed PYPER from the ground up - I used [Blender](https://www.blender.org/) for 3D-modeling of the platform, steering mechanism, and drivetrain, printed [these parts]() on my [Creality Ender 3 3D Printer](https://www.creality.com/products/ender-3-3d-printer), designed the [electrical circuitry](wiring.drawio), and wrote [the code](./src/) that coordinates its driving mechanics
 
 The project is fully open source. All code is available here. I am working now on listing all of the 3D-printed components on Thingiverse.
 
