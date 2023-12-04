@@ -1,4 +1,4 @@
-# PYPER - Python-Based Printed Electric Rover
+# PYPER - **Py**thon-Based 3D-**P**rinted **E**lectric **R**over
 ![pyper](https://i.imgur.com/wx5TQ7o.jpg)
 **PYPER** is my **Py**thon-based, 3D-**P**rinted, **E**lectric **R**over. I independently designed PYPER from the ground up: mechanical design of the drivetrain and steering mechanism, circuitry for the electronics, and software that runs PYPER.
 
