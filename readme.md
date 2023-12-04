@@ -50,6 +50,12 @@ Parts are provided [on Thingiverse]() as STL files. Each part and its role is de
 |![img]()|drive_axle.stl|drivetrain|Final drive axle. Transfers torque from the two **drive_axle_gear.stl** to the rear wheels, moving the rover forward or backward|
 |![img]()|bearing_mount.stl|drivetrain|Holds the **drive_axle.stl** in place, meshing with the two **mid_axle_gear.stl**, and allowing it to spin freely while also supporting the weight of the chassis|
 
+### Visual Depictions
+![steering system](https://i.imgur.com/QWwSRlL.png)
+![drivetrain: motor mount](https://i.imgur.com/uaLdGjE.png)
+![drivetrain: Mid Axle](https://i.imgur.com/G4dgbnp.png)
+![drivetrain: Final Drive](https://i.imgur.com/nbxdLVr.png)
+
 
 ## Screws Needed to Put it all together
 - 2 M3*30mm for steering upright
