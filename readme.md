@@ -62,18 +62,11 @@ All of the 3D-printed parts needed to make PYPER are available [on Thingiverse](
     - `wheel_front.stl`
 - After printing the gears, you may need to slightly sand down some of the teeth of each gear so they mesh well against one another.
 
-## Screws Needed to Put it all together
-- 2 M3*30mm for steering upright
-- 2 M3*12mm for steering upright
-- 2 M3*8mm for screwing front wheels in
-- 4 M2*12mm for screwing in final drive bearing mounts
-- 4 M2*8mm for screwing in mid axle mount
-- 2 M3*30mm for screwing TT motor into frame
-- 2 M3*8mm for screwing into TT frame into body
-- 2 M2*16mm for screwing in rear wheels
-- 2 M2*8mm for screwing in SG90 servo to frame
+## Screwing the 3D-Printed Parts Together
+Metric screws are used in PYPER's design due to their wide availability, precision, and compatability. The holes cut into the 3D-printed parts will fit are all intended for metric screws. 
 
-|Size|Count|
+These are how many of each metric screw specification you'll need:
+|Size (width*length)|Count|
 |-|-|
 |M3*30mm|4|
 |M3*12mm|2|
@@ -81,6 +74,17 @@ All of the 3D-printed parts needed to make PYPER are available [on Thingiverse](
 |M2*16mm|2|
 |M2*12mm|4|
 |M2*8mm|6|
+
+These are the specific needs for these screws in PYPER's design:
+- 2 M3*30mm for steering uprights
+- 2 M3*12mm for steering uprights
+- 2 M3*8mm for screwing front wheels in
+- 4 M2*12mm for screwing in final drive bearing mounts
+- 4 M2*8mm for screwing in mid axle mount
+- 2 M3*30mm for screwing TT motor into TT frame
+- 2 M3*8mm for screwing TT frane into base
+- 2 M2*16mm for screwing in rear wheels
+- 2 M2*8mm for screwing in SG90 servo to frame
 
 ## Movement Command
 ```
