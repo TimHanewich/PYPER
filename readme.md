@@ -8,16 +8,36 @@ The project is fully open source. All code is available here. I am working now o
 |Part|Cost (USD)|
 |-|-|
 |~110g of PLA filament (20% infill used)|$1.76|
-|1 Raspberry Pi Pico W||
-|1 SG-90 Servo Motor||
+|1 Raspberry Pi Pico W|$6|
+|1 [SG90 Servo Motor](https://www.amazon.com/Smraza-Helicopter-Airplane-Control-Arduino/dp/B07L2SF3R4/ref=sr_1_5?crid=25A4PZW1IX6Z4&keywords=sg90%2Bservo&qid=1701686041&sprefix=sg90%2Bse%2Caps%2C111&sr=8-5&th=1)|$1.88|
 |1 [TT Motor](https://www.amazon.com/gp/product/B09N6NXP4H/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1)|$1.47|
-|1 1S Lithium Polymer Battery||
-|1 MT3608 DC-DC Boost Converter||
-|8 MR115-2RS (5x11x4mm) Bearings||
-|1 L293D DC Brushed Motor Driver||
-|1 Small Breadboard||
+|1 [1S Lithium Polymer Battery](https://www.amazon.com/gp/product/B07L9SHHFX/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1)|$6.42|
+|1 [MT3608 DC-DC Boost Converter](https://www.amazon.com/Converter-Adjustable-Voltage-Regulator-Compatible/dp/B089JYBF25/ref=sr_1_3?crid=FGQJZDRRPHZN&keywords=mt3608&qid=1701686153&sprefix=mt3608%2Caps%2C96&sr=8-3)$0.90|
+|8 [MR115-2RS (5x11x4mm) Bearings](https://www.amazon.com/gp/product/B07X6DK946/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1)|$4.27|
+|1 [L293D DC Brushed Motor Driver](https://www.amazon.com/gp/product/B077TY21T7/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&th=1)|$1.25|
+|1 [Small Breadboard](https://www.amazon.com/gp/product/B07LFD4LT6/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1)|$1.71|
 |M2 and M3 Screws, Bolts, Washers||
 |Misc Wires||
+
+## Screws Needed to Put it all together
+- 2 M3*30mm for steering upright
+- 2 M3*12mm for steering upright
+- 2 M3*8mm for screwing front wheels in
+- 4 M2*12mm for screwing in final drive bearing mounts
+- 4 M2*8mm for screwing in mid axle mount
+- 2 M3*30mm for screwing TT motor into frame
+- 2 M3*8mm for screwing into TT frame into body
+- 2 M2*16mm for screwing in rear wheels
+- 2 M2*8mm for screwing in SG90 servo to frame
+
+|Size|Count|
+|-|-|
+|M3*30mm|4|
+|M3*12mm|2|
+|M3*8mm|4|
+|M2*16mm|2|
+|M2*12mm|4|
+|M2*8mm|6|
 
 ## Movement Command
 ```
