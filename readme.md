@@ -31,24 +31,24 @@ The project is fully open source. All code is available here. I am working now o
 
 ## PYPER's Parts Explained
 Parts are provided [on Thingiverse]() as STL files. Each part and its role is described below:
-|Part|Function|Role|
-|-|-|-|
-|base.stl|chassis|The platform everything is built on top of|
-|wheel_front.stl|chassis|The two front wheels to the rover|
-|wheel_rear.stl|chassis|The two rear wheels to the rover|
-|hubcap_front.stl|chassis|Hubcap for the front wheels|
-|hubcap_rear.stl|chassis|Hubcap for the rear wheels|
-|steering_upright_right.stl|steering|Mounting the front right wheel to this allows the wheel to "pivot" to accomodate a steering angle, controlled by the servo|
-|steering_upright_left.stl|steering|Mounting the front left wheel to this allows the wheel to "pivot" to accomodate a steering angle, controlled by the servo|
-|tie_rod.stl|steering|Ties the two steering uprights together, mechanically linking them together with the servo, allowing the servo to manipulate the uprights|
-|tt_frame.stl|drivetrain|A frame that fits around the TT motor so it can be mounted to the chassis (base)|
-|motor_gear.stl|drivetrain|Fits snuggly around the TT motor's axle, transfering its torque into the drivetrain|
-|mid_axle_gear.stl|drivetrain|Meshes against the **motor_gear.stl**, being driven by the motor gear|
-|mid_axle.stl|drivetrain|Serves to hold two mid axle gears in place along their axis, allowing them to spin freely|
-|mid_axle_mount.stl|drivetrain|Holds the **mid_axle.stl** in place securely, allowing the mid axle gears to mesh with both the motor gears and drive axle gears|
-|drive_axle_gear.stl|drivetrain|Meshes against the two **mid_axle_gear.stl**, transfering torque to the final drive, turning the rear wheels|
-|drive_axle.stl|drivetrain|Final drive axle. Transfers torque from the two **drive_axle_gear.stl** to the rear wheels, moving the rover forward or backward|
-|bearing_mount.stl|drivetrain|Holds the **drive_axle.stl** in place, meshing with the two **mid_axle_gear.stl**, and allowing it to spin freely while also supporting the weight of the chassis|
+|Image|Part|Function|Role|
+|-|-|-|-|
+|![img]()|base.stl|chassis|The platform everything is built on top of|
+|![img]()|wheel_front.stl|chassis|The two front wheels to the rover|
+|![img]()|wheel_rear.stl|chassis|The two rear wheels to the rover|
+|![img]()|hubcap_front.stl|chassis|Hubcap for the front wheels|
+|![img]()|hubcap_rear.stl|chassis|Hubcap for the rear wheels|
+|![img]()|steering_upright_right.stl|steering|Mounting the front right wheel to this allows the wheel to "pivot" to accomodate a steering angle, controlled by the servo|
+|![img]()|steering_upright_left.stl|steering|Mounting the front left wheel to this allows the wheel to "pivot" to accomodate a steering angle, controlled by the servo|
+|![img]()|tie_rod.stl|steering|Ties the two steering uprights together, mechanically linking them together with the servo, allowing the servo to manipulate the uprights|
+|![img]()|tt_frame.stl|drivetrain|A frame that fits around the TT motor so it can be mounted to the chassis (base)|
+|![img]()|motor_gear.stl|drivetrain|Fits snuggly around the TT motor's axle, transfering its torque into the drivetrain|
+|![img]()|mid_axle_gear.stl|drivetrain|Meshes against the **motor_gear.stl**, being driven by the motor gear|
+|![img]()|mid_axle.stl|drivetrain|Serves to hold two mid axle gears in place along their axis, allowing them to spin freely|
+|![img]()|mid_axle_mount.stl|drivetrain|Holds the **mid_axle.stl** in place securely, allowing the mid axle gears to mesh with both the motor gears and drive axle gears|
+|![img]()|drive_axle_gear.stl|drivetrain|Meshes against the two **mid_axle_gear.stl**, transfering torque to the final drive, turning the rear wheels|
+|![img]()|drive_axle.stl|drivetrain|Final drive axle. Transfers torque from the two **drive_axle_gear.stl** to the rear wheels, moving the rover forward or backward|
+|![img]()|bearing_mount.stl|drivetrain|Holds the **drive_axle.stl** in place, meshing with the two **mid_axle_gear.stl**, and allowing it to spin freely while also supporting the weight of the chassis|
 
 
 ## Screws Needed to Put it all together
