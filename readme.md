@@ -4,6 +4,14 @@
 
 The project is fully open source. All code is available here. I am working now on listing all of the 3D-printed components on Thingiverse.
 
+### PYPER Specifications
+|Spec|Value|
+|-|-|
+|Weight|125g?|
+|Top Speed (@ 5V)||
+|Dimensions|173x213x76 mm (WxLxH)|
+|Total Cost to Build|Roughly $28.66|
+
 ## What You Need to Build PYPER
 |Part|Cost (USD)|
 |-|-|
@@ -53,19 +61,15 @@ The project is fully open source. All code is available here. I am working now o
 
 ## To include in project on Thingiverse:
 - hardware
-    - Total grams of filament used
-    - Car weight
-    - Car top speed @ 6v?
-    - Cost estimate w/ parts and filament
+    - ~~Total grams of filament used~~
+    - ~~Car weight~~
+    - ~~Car top speed @ 6v?~~
+    - ~~Cost estimate w/ parts and filament~~
     - All individual parts and full assembled STL
         - And how many of each part you will need to print to make the full thing
     - Video putting it together?
-    - What's needed:
-        - SG90 servo
-        - TT motor
-        - a few 5mm bearings.
-    - Dimensions
-    - Pictures of fully assembled
+    - ~~Dimensions~~
+    - ~~Pictures of fully assembled~~
     - Video of it working
     - Explanation of each part. i.e. compare front + rear hub cap differences
     - Why I made this: basic fundamentals of driving
