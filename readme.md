@@ -108,7 +108,7 @@ PYPER uses:
 - A **Raspberry Pi Pico W** to serve as "the brain", driving PYPER around according to requests
 
 The components should be wired together as depicted in this wiring diagram below:
-![wiring](https://i.imgur.com/gLqn1KU.png).
+![wiring](https://i.imgur.com/gLqn1KU.png)
 
 The draw.io wiring diagram can be found [here](./wiring.drawio), if you'd prefer to pull up a higher-resolution version.
 
