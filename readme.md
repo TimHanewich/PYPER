@@ -9,11 +9,11 @@ I designed PYPER from scratch from the ground up - I used [Blender](https://www.
 The project is fully open source under the [**Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International** license](https://creativecommons.org/licenses/by-nc-sa/4.0/). The source code that runs on an onboard Raspberry Pi is available [here](./src/) and the 3D-printed parts (.stl files) can be found [on Thingiverse here](https://www.thingiverse.com/thing:6352166).
 
 Some more information about PYPER:
-- Weigth: 125g?
+- Weight: ?
 - Top speed (@ 5V): ?
 - Dimensions: 173x213x76 mm (WxLxH)
 - Total Cost to build (estimate): $28.66
-- Final drive gear ratio: 
+- Final drive gear ratio: ?
 
 ## Why I built PYPER
 I built PYPER to demonstrate the essential components required to build a *basic* RC car: a steering mechanism and a mid-mounted motor delivering power to the rear wheels through a multi-gear drivetrain. While many other models you can find online are very impressive, they tend to be overly complex and advanced, posing challenges for beginners to mechanical engineering to understand.
@@ -49,11 +49,11 @@ All of the 3D-printed parts needed to make PYPER are available [on Thingiverse](
 |![img](https://cdn.thingiverse.com/assets/f4/13/2c/d6/84/medium_preview_a9383307-72aa-4795-97be-d7945f37b2d2.png)|wheel_rear.stl|chassis|The two rear wheels to the rover|
 |![img](https://i.imgur.com/PHBrIim.png)|hubcap_front.stl|chassis|Hubcap for the front wheels|
 |![img](https://cdn.thingiverse.com/assets/89/0d/0f/c9/be/medium_preview_d2ce201d-1621-40b9-8620-3bc202a74c32.png)|hubcap_rear.stl|chassis|Hubcap for the rear wheels|
-|![img](https://cdn.thingiverse.com/assets/f2/b0/72/a3/81/medium_preview_2abca809-7e6a-4407-85b1-dbd96e63e2d9.png)|steering_upright_right.stl|steering|Mounting the front right wheel to this allows the wheel to "pivot" to accomodate a steering angle, controlled by the servo|
-|![img](https://cdn.thingiverse.com/assets/85/64/72/f9/5f/medium_preview_feedb94a-3ae1-473e-a5f9-0aab0a3ab826.png)|steering_upright_left.stl|steering|Mounting the front left wheel to this allows the wheel to "pivot" to accomodate a steering angle, controlled by the servo|
+|![img](https://cdn.thingiverse.com/assets/f2/b0/72/a3/81/medium_preview_2abca809-7e6a-4407-85b1-dbd96e63e2d9.png)|steering_upright_right.stl|steering|Mounting the front right wheel to this allows the wheel to "pivot" to accommodate a steering angle, controlled by the servo|
+|![img](https://cdn.thingiverse.com/assets/85/64/72/f9/5f/medium_preview_feedb94a-3ae1-473e-a5f9-0aab0a3ab826.png)|steering_upright_left.stl|steering|Mounting the front left wheel to this allows the wheel to "pivot" to accommodate a steering angle, controlled by the servo|
 |![img](https://cdn.thingiverse.com/assets/e0/9c/f3/39/af/medium_preview_81367bf7-9a19-407e-b134-6c8cf395163f.png)|tie_rod.stl|steering|Ties the two steering uprights together, mechanically linking them together with the servo, allowing the servo to manipulate the uprights|
 |![img](https://cdn.thingiverse.com/assets/1d/8a/d8/64/b7/medium_preview_8304275a-9adf-4cd3-9414-05dd9bf7d918.png)|tt_frame.stl|drivetrain|A frame that fits around the TT motor so it can be mounted to the chassis (base)|
-|![img](https://cdn.thingiverse.com/assets/48/66/53/32/fc/medium_preview_249689cf-7534-483e-8abe-a1d6b079cf0a.png)|motor_gear.stl|drivetrain|Fits snuggly around the TT motor's axle, transfering its torque into the drivetrain|
+|![img](https://cdn.thingiverse.com/assets/48/66/53/32/fc/medium_preview_249689cf-7534-483e-8abe-a1d6b079cf0a.png)|motor_gear.stl|drivetrain|Fits snuggly around the TT motor's axle, transferring its torque into the drivetrain|
 |![img](https://cdn.thingiverse.com/assets/11/08/12/99/94/medium_preview_d6b55c69-e47a-4c46-98dd-f7671e345f68.png)|mid_axle_gear.stl|drivetrain|Meshes against the **motor_gear.stl**, being driven by the motor gear|
 |![img](https://i.imgur.com/vs2SYBJ.png)|mid_axle.stl|drivetrain|Serves to hold two mid axle gears in place along their axis, allowing them to spin freely|
 |![img](https://cdn.thingiverse.com/assets/01/10/5d/7e/bc/medium_preview_3e8ef466-5e44-4490-94a1-9f52d1d24662.png)|mid_axle_mount.stl|drivetrain|Holds the **mid_axle.stl** in place securely, allowing the mid axle gears to mesh with both the motor gears and drive axle gears|
@@ -75,7 +75,7 @@ All of the 3D-printed parts needed to make PYPER are available [on Thingiverse](
 - After printing the gears, you may need to slightly sand down some of the teeth of each gear so they mesh well against one another.
 
 ## Screwing the 3D-Printed Parts Together
-Metric screws are used in PYPER's design due to their wide availability, precision, and compatability. The holes cut into the 3D-printed parts will fit are all intended for metric screws. 
+Metric screws are used in PYPER's design due to their wide availability, precision, and compatibility. The holes cut into the 3D-printed parts will fit are all intended for metric screws. 
 
 These are how many of each metric screw specification you'll need:
 |Size (width*length)|Count|
@@ -94,7 +94,7 @@ These are the specific needs for these screws in PYPER's design:
 - 4 M2*12mm for screwing in final drive bearing mounts
 - 4 M2*8mm for screwing in mid axle mount
 - 2 M3*30mm for screwing TT motor into TT frame
-- 2 M3*8mm for screwing TT frane into base
+- 2 M3*8mm for screwing TT frame into base
 - 2 M2*16mm for screwing in rear wheels
 - 2 M2*8mm for screwing in SG90 servo to frame
 
@@ -111,7 +111,7 @@ Before deploying this code to your own Raspberry Pi Pico W, you will need to con
 
 With the contents of the [src folder](./src/) loaded onto a Raspberry Pi Pico W (programs like **Thonny** or **rshell** can be used for this), once the Raspberry Pi Pico W is powered up, it will immediately begin to execute the code in the [main.py](./src/main.py) module. Once the onboard LED of the Raspberry Pi Pico W goes solid, this indicates it is ready to operate!
 
-You can control PYPER by making HTTP requests to it on your home network. It has several endpoint services you can call to to do various things:
+You can control PYPER by making HTTP requests to it on your home network. It has several endpoint services you can call to do various things:
 
 ### Driving PYPER
 You can make an HTTP request to the `/move` endpoint to instruct PYPER to move. PYPER works a lot like NASA's mars rovers: you instruct PYPER to make a maneuver; you specify whether it should move forward or backward, how much power it should move with (throttle), by how much it should be steering to the left or right (steering angle), and how long this maneuver should last. PYPER will execute your instructions, stop, and then response `200 OK` ("that worked successfully!") to you. A request to the `/move` endpoint should look like this:
@@ -129,7 +129,7 @@ Content-Type: application/json
 
 In the example above, PYPER will move **forward** at a throttle of **75%**, steering to **the right** at **80%**, and will continue doing so for **3.0** seconds before stopping. Each property explained further:
 - `drive`: A value between -1.0 and 1.0. This defines the throttle PYPER will apply to the motor. -1.0 would be 100% throttle in reverse, 1.0 would be 100% throttle forward. 
-- `steer`: A value between -1.0 and 1.0. This defines the steering angle PYPER will use when driving (how it is steeering).  -1.0 would be 100% steering to the left, 1.0 would be 100% steering to the right.
+- `steer`: A value between -1.0 and 1.0. This defines the steering angle PYPER will use when driving (how it is steering).  -1.0 would be 100% steering to the left, 1.0 would be 100% steering to the right.
 - `duration`: A value > 0.0. This defines how many **seconds** this specific maneuver should last. 
 
 PYPER also supports movement commands that are **chained together**. For example: 
