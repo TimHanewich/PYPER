@@ -2,7 +2,9 @@
 ![pyper](https://i.imgur.com/wx5TQ7o.jpg)
 **PYPER** is a **Py**thon-based, 3D-**P**rinted, **E**lectric **R**over. 
 
-I designed PYPER from scratch from the ground up - I used [Blender](https://www.blender.org/) for 3D-modeling of the chassis, steering mechanism, and drivetrain, printed [the parts](https://www.thingiverse.com/thing:6352166) on my [Creality Ender 3 3D Printer](https://www.creality.com/products/ender-3-3d-printer), designed the [electrical circuitry](wiring.drawio), and wrote [the code](./src/) that coordinates its driving mechanics
+I designed PYPER from scratch from the ground up - I used [Blender](https://www.blender.org/) for 3D-modeling of the chassis, steering mechanism, and drivetrain, printed [the parts](https://www.thingiverse.com/thing:6352166) on my [Creality Ender 3 3D Printer](https://www.creality.com/products/ender-3-3d-printer), designed the [electrical circuitry](wiring.drawio), and wrote [the code](./src/) that coordinates its driving mechanics.
+
+
 
 The project is fully open source under the [**Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International** license](https://creativecommons.org/licenses/by-nc-sa/4.0/). The source code that runs on an onboard Raspberry Pi is available [here](./src/) and the 3D-printed parts (.stl files) can be found [on Thingiverse here](https://www.thingiverse.com/thing:6352166).
 
@@ -13,7 +15,15 @@ Some more information about PYPER:
 - Total Cost to build (estimate): $28.66
 - Final drive gear ratio: 
 
+## Why I built PYPER
+I built PYPER to demonstrate the essential components required to build a *basic* RC car: a steering mechanism and a mid-mounted motor delivering power to the rear wheels through a multi-gear drivetrain. While many other models you can find online are very impressive, they tend to be overly complex and advanced, posing challenges for beginners to mechanical engineering to understand.
+
+In contrast, PYPER is intentionally designed to be straightforward, accessible, and approachable for *anybody*. So, for the sake of learning, I describe PYPER and its systems (steering, drivetrain, code, etc.) below in detail.
+
+I hope you can learn from PYPER and uses these ideas in your own projects.
+
 ## Parts List: What You Need to Build PYPER
+PYPER is fully open source, everything you need to build one is available here. These are the parts used in PYPER, if you choose to build a PYPER yourself or repurpose these ideas in your own design:
 |Part|Cost (USD)|
 |-|-|
 |~110g of [PLA filament](https://www.amazon.com/gp/product/B0BM73MC94/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&th=1) (20% infill used)|$1.76|
@@ -27,6 +37,8 @@ Some more information about PYPER:
 |1 [Small Breadboard](https://www.amazon.com/gp/product/B07LFD4LT6/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1)|$1.71|
 |22 [M2 and M3 Screws, Bolts, Washers (see below)](https://www.amazon.com/gp/product/B07FCDL2SY/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&th=1)|< $2.00|
 |Misc Wires|< $1.00|
+
+Part costs to build PYPER: **roughly $28.66**.
 
 ## PYPER's 3D-Printed Parts Explained
 All of the 3D-printed parts needed to make PYPER are available [on Thingiverse](https://www.thingiverse.com/thing:6352166) for free. Each part and its role is described below:
@@ -49,7 +61,7 @@ All of the 3D-printed parts needed to make PYPER are available [on Thingiverse](
 |![img](https://cdn.thingiverse.com/assets/1a/ba/19/19/34/medium_preview_6a1d7751-3c5a-47ce-84ba-68fccc894def.png)|drive_axle.stl|drivetrain|Final drive axle. Transfers torque from the two **drive_axle_gear.stl** to the rear wheels, moving the rover forward or backward|
 |![img](https://cdn.thingiverse.com/assets/57/f0/64/40/fa/medium_preview_ea64d320-9ecc-4ca9-8326-a7cd56e01cfd.png)|bearing_mount.stl|drivetrain|Holds the **drive_axle.stl** in place, meshing with the two **mid_axle_gear.stl**, and allowing it to spin freely while also supporting the weight of the chassis|
 
-### Visual Depictions
+### Visual Depictions of PYPERS Components
 ![steering system](https://i.imgur.com/QWwSRlL.png)
 ![drivetrain: motor mount](https://i.imgur.com/uaLdGjE.png)
 ![drivetrain: Mid Axle](https://i.imgur.com/G4dgbnp.png)
