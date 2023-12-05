@@ -98,6 +98,20 @@ These are the specific needs for these screws in PYPER's design:
 - 2 M2*16mm for screwing in rear wheels
 - 2 M2*8mm for screwing in SG90 servo to frame
 
+## Wiring up the Electronics
+PYPER uses:
+- A **1S (1 cell) Lithium Polymer battery** (but this can be swapped with any battery < 5V that can provide enough current to power these electronics, which is minimal)
+- A **MT3608** DC-DC converter to step up the 3.2-4.2 nominal volts of the 1 cell battery to a stable 5V
+- An **L293D** brushed DC motor driver for controlling the application of electricity to the motor via the Raspberry Pi's GPIO pins
+- A **1:48 gear ratio TT motor** to turn the rear wheels, moving it forward or backward
+- An **SG90 servo** to actuate a steering angle
+- A **Raspberry Pi Pico W** to serve as "the brain", driving PYPER around according to requests
+
+The components should be wired together as depicted in this wiring diagram below:
+![wiring](https://i.imgur.com/gLqn1KU.png).
+
+The draw.io wiring diagram can be found [here](./wiring.drawio), if you'd prefer to pull up a higher-resolution version.
+
 ## Driving PYPER: Software
 PYPER is drivable via an onboard Raspberry Pi Pico W which runs a web server on your local network and receives movement commands via HTTP requests. PYPER's software is written in **MicroPython** and is available in [the `src` folder here](./src/).
 
