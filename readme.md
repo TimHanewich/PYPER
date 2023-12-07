@@ -11,7 +11,7 @@ The project is fully open source under the [**Creative Commons Attribution-NonCo
 ### PYPER Specifications
 - **Weight**, fully assembled: 23g
 - **Dimensions**: 173x213x76 mm (WxLxH)
-- **Gear Ratio**: PYPER uses a **1:48** TT motor against a **4:5** 3D-printed gear system I developed. Altogether, PYPER has a **38.4** fixed gear ratio.
+- **Gear Ratio**: PYPER uses a **1:48** TT motor against a **4:5** 3D-printed compound gear system I developed. Altogether, PYPER has a **38.4** fixed gear ratio.
 
 ## Why I built PYPER
 I built PYPER to demonstrate the essential components required to build a *basic* RC car: a steering mechanism and a mid-mounted motor delivering power to the rear wheels through a multi-gear drivetrain. While many other models you can find online are very impressive, they tend to be overly complex and advanced, posing challenges for beginners to mechanical engineering to understand.
