@@ -217,8 +217,13 @@ After calling to this endpoint and receiving the `200 OK` response, PYPER is rea
 ## Clips from Development
 I routinely took small clips during PYPER's development, demonstrating each part of the design. I'm listing them here for learning purposes, in case you want to study a specific piece:
 - [Assembling 3D-printed steering system](https://www.youtube.com/shorts/D8oKYiKBxoA)
-- [Drivetrain Closeup demonstration](https://youtube.com/shorts/8eYT_Qdbzhs)
+- [First demonstration of powered steering system](https://twitter.com/TimHanewich/status/1725139275988021744)
+- [First prototype of TT motor mount](https://twitter.com/TimHanewich/status/1726737684020773365)
+- [First drivetrain demonstration (no wheels)](https://twitter.com/TimHanewich/status/1729273808488468517)
 - [Servo actuating steering angle](https://youtube.com/shorts/jCH9cWKqCqs)
+- [Final steering upright design](https://twitter.com/TimHanewich/status/1730002026338066827)
+- [Drive axle and mid axle attached to base](https://twitter.com/TimHanewich/status/1730595493309215170)
+- [Complete drivetrain Closeup demonstration](https://youtube.com/shorts/8eYT_Qdbzhs)
 
 ## To include in project on Thingiverse:
 - hardware
