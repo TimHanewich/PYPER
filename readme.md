@@ -62,6 +62,7 @@ All of the 3D-printed parts needed to make PYPER are available [on Thingiverse](
 ![drivetrain: motor mount](https://i.imgur.com/uaLdGjE.png)
 ![drivetrain: Mid Axle](https://i.imgur.com/G4dgbnp.png)
 ![drivetrain: Final Drive](https://i.imgur.com/nbxdLVr.png)
+These visualizations can be found in [this PowerPoint deck](https://github.com/TimHanewich/PYPER/releases/download/1/visuals.pptx).
 
 ### Post-Printing
 - You will need to insert a MR115-2RS (5x11x4mm) bearing into the following parts after printing. Each part is designed to accept the bearing with little friction, but you may need to use a mallet/hammer to bang the bearing in.
