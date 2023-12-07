@@ -4,8 +4,6 @@
 
 I designed PYPER from scratch from the ground up - I used [Blender](https://www.blender.org/) for 3D-modeling of the chassis, steering mechanism, and drivetrain, printed [the parts](https://www.thingiverse.com/thing:6352166) on my [Creality Ender 3 3D Printer](https://www.creality.com/products/ender-3-3d-printer), designed the [electrical circuitry](wiring.drawio), and wrote [the code](./src/) that coordinates its driving mechanics.
 
-
-
 The project is fully open source under the [**Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International** license](https://creativecommons.org/licenses/by-nc-sa/4.0/). The source code that runs on an onboard Raspberry Pi is available [here](./src/) and the 3D-printed parts (.stl files) can be found [on Thingiverse here](https://www.thingiverse.com/thing:6352166).
 
 ### PYPER Specifications
