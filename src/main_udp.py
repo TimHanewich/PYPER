@@ -6,13 +6,9 @@ print("")
 import machine
 import network
 import socket
-import json
 import time
-import request_tools
 import settings
-import MovementCommand
 import DrivingSystem
-import json
 import ControlCommand
 
 # boot pattern
@@ -43,9 +39,6 @@ print("My IP Address: " + my_ip)
 ds:DrivingSystem.DrivingSystem = DrivingSystem.DrivingSystem()
 ds.enable_drive()
 ds.enable_steer()
-
-
-
 
 # start listening
 addr = socket.getaddrinfo("0.0.0.0", 80)[0][-1]
