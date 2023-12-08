@@ -1,7 +1,7 @@
 print("Hi, I'm PYPER, your Python-based 3D-Printed Electric Rover!")
 print("For more information about PYPER, visit https://github.com/TimHanewich/PYPER")
-print("")
 print("PYPER is available under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 license")
+print("")
 
 import machine
 import network
@@ -55,7 +55,7 @@ s.listen(1)
 led.on()
 while True:
 
-    print("Awaiting connection...")
+    print("Awaiting connection @ " + str(time.ticks_ms()) + " ticks...")
     cl, addr = s.accept()
     print("Connection from " + addr[0] + "!")
 
@@ -64,6 +64,7 @@ while True:
     try:
 
         # collect bytes
+        print("Collecting bytes from request...")
         data = request_tools.read_all(cl, 500)
         print(str(len(data)) + " bytes received")
 
@@ -98,7 +99,6 @@ while True:
                     cl.close()
                     continue
                 print("Movement commands validated!")
-
 
                 # execute each
                 for mc in mcs:
