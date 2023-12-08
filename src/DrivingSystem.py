@@ -57,7 +57,8 @@ class DrivingSystem:
         self.drive(0.0)
 
     def drive(self, power:float) -> None:
-        duty:int = int(round(65025 * power, 0))
+        duty:int = abs(int(round(65025 * power, 0)))
+        duty = max(min(duty, 65025), 0)
         if power >= 0.0:
             self.i1.duty_u16(0)
             self.i2.duty_u16(duty)
