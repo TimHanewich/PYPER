@@ -1,3 +1,8 @@
+print("Hi, I'm PYPER, your Python-based 3D-Printed Electric Rover!")
+print("For more information about PYPER, visit https://github.com/TimHanewich/PYPER")
+print("")
+print("PYPER is available under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 license")
+
 import machine
 import network
 import socket
