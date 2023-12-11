@@ -9,3 +9,8 @@ gp_i2:int = 15
 # Wifi Network credentials
 wifi_ssid = ""
 wifi_password = ""
+
+# Operation Mode
+# 0 = HTTP-based. You will send HTTP requests to PYPER to instruct it to move at a specific power level with a specific steering angle for a specific duration. (default)
+# 1 = UDP-based. You will continuously broadcast packets over UDP. PYPER will receive these and adjust its steering angle and power accordingly.
+operation_mode:int = 0
