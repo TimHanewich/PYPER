@@ -24,15 +24,19 @@ for x in range(0, 5):
 led.on()
 
 # connect to wifi network
+wifi_connection_attempt:int = 1
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 while wlan.isconnected() == False:
+
+    print("Attemt to connect to wifi network '" + settings.wifi_ssid + "' # " + str(wifi_connection_attempt) + "...")
+    wifi_connection_attempt = wifi_connection_attempt + 1
+
     # blip light
     led.on()
     time.sleep(0.1)
     led.off()
     
-    print("Attemping to connect to wifi...")
     wlan.connect(settings.wifi_ssid, settings.wifi_password)
     time.sleep(3)
 print("Connected to wifi!")
@@ -40,12 +44,16 @@ my_ip:str = str(wlan.ifconfig()[0])
 print("My IP Address: " + my_ip)
 
 # start up the Driving system
+print("Initializing DrivingSystem...")
 ds:DrivingSystem.DrivingSystem = DrivingSystem.DrivingSystem()
 ds.enable_drive()
 ds.enable_steer()
 
 # Operate in intended mode
 if settings.operation_mode == 0: # HTTP-server based
+
+    print("Entering HTTP server mode!")
+
     # set up statistics that will be tracked
     stat_calls_received:int = 0
     stat_movement_commands_executed:int = 0
@@ -171,6 +179,8 @@ if settings.operation_mode == 0: # HTTP-server based
             cl.close()
 
 elif settings.operation_mode == 1: # UDP-based mode
+
+    print("Entering UDP mode!")
 
     # start listening
     addr = socket.getaddrinfo("0.0.0.0", 80)[0][-1]
