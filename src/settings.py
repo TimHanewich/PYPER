@@ -1,3 +1,7 @@
+# Wifi Network credentials
+wifi_ssid = ""
+wifi_password = ""
+
 # Steering system-related GPIO pins. GP #'s, not pin numbers
 gp_steering:int = 12
 
@@ -5,10 +9,6 @@ gp_steering:int = 12
 gp_safety:int = 13
 gp_i1:int = 14
 gp_i2:int = 15
-
-# Wifi Network credentials
-wifi_ssid = ""
-wifi_password = ""
 
 # Operation Mode
 # 0 = HTTP-based. You will send HTTP requests to PYPER to instruct it to move at a specific power level with a specific steering angle for a specific duration. (default)
