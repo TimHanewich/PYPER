@@ -13,6 +13,21 @@ import settings
 import MovementCommand
 import DrivingSystem
 import json
+import neopixel
+
+# set up neopixel
+pixels = neopixel.Neopixel(1, 1, 0, "GRB")
+pixels.fill((255, 0, 0))
+pixels.show()
+time.sleep(1.0)
+pixels.fill((0, 255, 0))
+pixels.show()
+time.sleep(1.0)
+pixels.fill((0, 0, 255))
+pixels.show()
+time.sleep(1.0)
+pixels.fill((0, 0, 0))
+pixels.show()
 
 # boot pattern
 led = machine.Pin("LED", machine.Pin.OUT)
@@ -62,11 +77,19 @@ s.listen(1)
 led.on()
 while True:
 
+    # turn on green
+    pixels.fill((0, 255, 0))
+    pixels.show()
+
     print("Awaiting connection @ " + str(time.ticks_ms()) + " ticks...")
     cl, addr = s.accept()
     print("Connection from " + addr[0] + "!")
 
     stat_calls_received = stat_calls_received + 1
+
+    # turn on red
+    pixels.fill((255, 0, 0))
+    pixels.show()
     
     try:
 
