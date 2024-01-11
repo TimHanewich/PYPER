@@ -77,123 +77,133 @@ s.listen(1)
 led.on()
 while True:
 
-    # turn on green
-    pixels.fill((0, 255, 0))
-    pixels.show()
-
-    print("Awaiting connection @ " + str(time.ticks_ms()) + " ticks...")
-    cl, addr = s.accept()
-    print("Connection from " + addr[0] + "!")
-
-    stat_calls_received = stat_calls_received + 1
-
-    # turn on red
-    pixels.fill((255, 0, 0))
-    pixels.show()
-    
     try:
 
-        # collect bytes
-        print("Collecting bytes from request...")
-        data = request_tools.read_all(cl, 500)
-        print(str(len(data)) + " bytes received")
+        # turn on green
+        pixels.fill((0, 255, 0))
+        pixels.show()
 
-        if len(data) > 0:
+        print("Awaiting connection @ " + str(time.ticks_ms()) + " ticks...")
+        cl, addr = s.accept()
+        print("Connection from " + addr[0] + "!")
+
+        stat_calls_received = stat_calls_received + 1
+
+        # turn on red
+        pixels.fill((255, 0, 0))
+        pixels.show()
         
-            # parse
-            req = request_tools.request.parse(data.decode())
+        try:
 
-            # if it was a move command
-            if req.method.lower() == "post" and req.path.lower() == "/move":
-                print("Movement command request received!")
+            # collect bytes
+            print("Collecting bytes from request...")
+            data = request_tools.read_all(cl, 500)
+            print(str(len(data)) + " bytes received")
 
-                # parse the movement command from the body
-                mcs:list[MovementCommand.MovementCommand] = []
-                try:
-                    mcs = MovementCommand.MovementCommand.parse(req.body)
-                except Exception as e:
-                    cl.send("HTTP/1.0 400 BAD REQUEST\r\n\r\nThere was an issue parsing the movement commands provided in the body! Msg: " + str(e))
-                    cl.close()
-                    continue
-                print(str(len(mcs)) + " movement commands received!")
-                
-                # validate each movement command
-                validations:list[str] = []
-                for mc in mcs:
-                    validation:str = mc.validate()
-                    if validation != None:
-                        validations.append(validation)
-                if len(validations) > 0:
-                    print("At least of the movement commands had validation issues!")
-                    cl.send("HTTP/1.0 400 BAD REQUEST\r\n\r\nThere were validation issues with one or more of the movement commands provided: " + str(validations))
-                    cl.close()
-                    continue
-                print("Movement commands validated!")
-
-                # execute each
-                for mc in mcs:
-                    if mc != mcs[len(mcs) - 1]: # if it is not the last one
-                        ds.execute(mc, False) # do not stop
-                    else: # if it is the last one
-                        ds.execute(mc, True) # execute it, and then stop, it is the last one
-                    stat_movement_commands_executed = stat_movement_commands_executed + 1
-                        
-
-                # respond with OK
-                cl.send("HTTP/1.0 200 OK\r\n\r\n")
-                cl.close()
-
-
-            elif req.method.lower() == "get" and req.path.lower() == "/status":
-
-                print("It is a status request!")
-
-                # prepare
-                ToReturn = {}
-                ToReturn["uptime"] = time.ticks_ms() / 1000
-                ToReturn["calls"] = stat_calls_received
-                ToReturn["movements"] = stat_movement_commands_executed
-                ToReturnStr = json.dumps(ToReturn)
-
-                # Return
-                cl.send("HTTP/1.0 200 OK\r\nContent-Type: application/json\r\n\r\n" + json.dumps(ToReturn))
-                cl.close()
-
-            elif req.method.lower() == "get" and req.path.lower() == "/disarm":
-
-                # disable drive + steer
-                ds.disable_drive()
-                ds.disable_steer()
-
-                # respond with OK
-                cl.send("HTTP/1.0 200 OK\r\n\r\n")
-                cl.close()
-
-            elif req.method.lower() == "get" and req.path.lower() == "/arm":
-
-                # enable drive + steer
-                ds.enable_drive()
-                ds.enable_steer()
-
-                # respond with OK
-                cl.send("HTTP/1.0 200 OK\r\n\r\n")
-                cl.close()
-
-
-
-            else:
-                print("It was an invalid request")
-                cl.send("HTTP/1.0 404 NOT FOUND\r\n\r\n")
-                cl.close()
-
+            if len(data) > 0:
             
+                # parse
+                req = request_tools.request.parse(data.decode())
 
-        else: # request of 0 bytes (connection?)
-            print("Connection with 0 bytes was attempted! Closing...")
-            cl.close()  
-        
+                # if it was a move command
+                if req.method.lower() == "post" and req.path.lower() == "/move":
+                    print("Movement command request received!")
+
+                    # parse the movement command from the body
+                    mcs:list[MovementCommand.MovementCommand] = []
+                    try:
+                        mcs = MovementCommand.MovementCommand.parse(req.body)
+                    except Exception as e:
+                        cl.send("HTTP/1.0 400 BAD REQUEST\r\n\r\nThere was an issue parsing the movement commands provided in the body! Msg: " + str(e))
+                        cl.close()
+                        continue
+                    print(str(len(mcs)) + " movement commands received!")
+                    
+                    # validate each movement command
+                    validations:list[str] = []
+                    for mc in mcs:
+                        validation:str = mc.validate()
+                        if validation != None:
+                            validations.append(validation)
+                    if len(validations) > 0:
+                        print("At least of the movement commands had validation issues!")
+                        cl.send("HTTP/1.0 400 BAD REQUEST\r\n\r\nThere were validation issues with one or more of the movement commands provided: " + str(validations))
+                        cl.close()
+                        continue
+                    print("Movement commands validated!")
+
+                    # execute each
+                    for mc in mcs:
+                        if mc != mcs[len(mcs) - 1]: # if it is not the last one
+                            ds.execute(mc, False) # do not stop
+                        else: # if it is the last one
+                            ds.execute(mc, True) # execute it, and then stop, it is the last one
+                        stat_movement_commands_executed = stat_movement_commands_executed + 1
+                            
+
+                    # respond with OK
+                    cl.send("HTTP/1.0 200 OK\r\n\r\n")
+                    cl.close()
+
+
+                elif req.method.lower() == "get" and req.path.lower() == "/status":
+
+                    print("It is a status request!")
+
+                    # prepare
+                    ToReturn = {}
+                    ToReturn["uptime"] = time.ticks_ms() / 1000
+                    ToReturn["calls"] = stat_calls_received
+                    ToReturn["movements"] = stat_movement_commands_executed
+                    ToReturnStr = json.dumps(ToReturn)
+
+                    # Return
+                    cl.send("HTTP/1.0 200 OK\r\nContent-Type: application/json\r\n\r\n" + json.dumps(ToReturn))
+                    cl.close()
+
+                elif req.method.lower() == "get" and req.path.lower() == "/disarm":
+
+                    # disable drive + steer
+                    ds.disable_drive()
+                    ds.disable_steer()
+
+                    # respond with OK
+                    cl.send("HTTP/1.0 200 OK\r\n\r\n")
+                    cl.close()
+
+                elif req.method.lower() == "get" and req.path.lower() == "/arm":
+
+                    # enable drive + steer
+                    ds.enable_drive()
+                    ds.enable_steer()
+
+                    # respond with OK
+                    cl.send("HTTP/1.0 200 OK\r\n\r\n")
+                    cl.close()
+
+
+
+                else:
+                    print("It was an invalid request")
+                    cl.send("HTTP/1.0 404 NOT FOUND\r\n\r\n")
+                    cl.close()
+
+                
+
+            else: # request of 0 bytes (connection?)
+                print("Connection with 0 bytes was attempted! Closing...")
+                cl.close()  
+            
+        except Exception as e:
+            print("Fatal error! Msg: " + str(e))
+            cl.send("HTTP/1.0 500 INTERNAL SERVER ERROR\r\n\r\n")
+            cl.close()
     except Exception as e:
-        print("Fatal error! Msg: " + str(e))
-        cl.send("HTTP/1.0 500 INTERNAL SERVER ERROR\r\n\r\n")
-        cl.close()
-
+        print("FATAL ERROR! " + str(e))
+        while True:
+            pixels.fill((0, 0, 255))
+            pixels.show()
+            time.sleep(0.5)
+            pixels.fill((0, 0, 0))
+            pixels.show()
+            time.sleep(0.5)
