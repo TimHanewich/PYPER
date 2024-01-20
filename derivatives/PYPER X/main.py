@@ -52,7 +52,7 @@ while True:
 
     if req.method.lower() == "get" and req.path.lower() == "/status":
         payload = {}
-        payload["uptime"] = time.time() - start_time
+        payload["uptime"] = round(time.time() - start_time, 1)
         payload["calls"] = stat_calls_received
         response:str = "HTTP/1.0 200 OK\r\nContent-Type: application/json\r\n\r\n" + json.dumps(payload)
         conn.send(response.encode())
