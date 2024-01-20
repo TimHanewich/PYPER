@@ -1,9 +1,10 @@
 class request:
 
-    method:str = None
-    path:str = None
-    body:str = None
-    headers:dict = {}
+    def __init__(self) -> None:
+        self.method:str = None
+        self.path:str = None
+        self.body:str = None
+        self.headers:dict = {}
 
     @staticmethod
     def parse(full_request:str):
