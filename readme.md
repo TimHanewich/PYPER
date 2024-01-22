@@ -9,7 +9,7 @@ The project is fully open source under the [**Creative Commons Attribution-NonCo
 ### PYPER Specifications
 - **Weight**, fully assembled: 23g
 - **Dimensions**: 173x213x76 mm (WxLxH)
-- **Gear Ratio**: PYPER uses a **1:48** TT motor against a **4:5** 3D-printed compound gear system I developed. [This graphic](https://i.imgur.com/Yiz39RH.png) helped me calculate this ratio:
+- **Gear Ratio**: PYPER uses a **48:1** [TT motor](https://www.amazon.com/gp/product/B09N6NXP4H/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) (*please note that, while the title of this product on Amazon states it is a 1:48 ratio, it is actually a 48:1 (reduction) gear ratio*) against a **4:5** 3D-printed compound gear system I developed. [This graphic](https://i.imgur.com/Yiz39RH.png) helped me calculate this ratio:
     - Teeth on motor gear (gear attached to TT motor, receiving rotational input): **15**
     - Teeth on mid-axle gear (intermediary between motor gear and final drive shaft): **24**
     - Teeth on drive shaft gear: **12**
@@ -18,6 +18,8 @@ The project is fully open source under the [**Creative Commons Attribution-NonCo
     - Ratio of **PYPER's 3D-printed** combined gear system = **24/15** * **12/24** = **288/360** = **4/5** = **4:5**
         - This can be interpretted as: *for every 4 turns the motor gear makes (powered by the motor), the final drive shaft will rotate 5 times*.
         - Thus, PYPER's gear system actually *speeds up* the TT motor (gains speed, loses torque) a little bit.
+    - Altogether, combining the **48:1** ratio of the TT motor against the **4:5** ratio of PYPER's fixed 3D-printed gear system, PYPER has a **192:5** gear ratio.
+        - This means that pairing PYPER's 3D-printed gear system to the TT motor *speeds up* the TT motor slightly, gaining speed, but losing torque (going from gear ratio of **48.0** to **38.4**).
 
 ## Why I built PYPER
 I built PYPER to demonstrate the essential components required to build a *basic* RC car: a steering mechanism and a mid-mounted motor delivering power to the rear wheels through a multi-gear drivetrain. While many other models you can find online are very impressive, they tend to be overly complex and advanced, posing challenges for beginners to mechanical engineering to understand.
