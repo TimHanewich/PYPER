@@ -17,7 +17,7 @@ The project is fully open source under the [**Creative Commons Attribution-NonCo
     - Mid-Axle Gear to Drive Shaft Gear ratio (driven / driving) = **12/24** = **12:24**
     - Ratio of **PYPER's 3D-printed** combined gear system = **24/15** * **12/24** = **288/360** = **4/5** = **4:5**
         - This can be interpretted as: *for every 4 turns the motor gear makes (powered by the motor), the final drive shaft will rotate 5 times*.
-        - Thus, my gear system actually *speeds up* the TT motor (gains speed, loses torque) a little bit.
+        - Thus, PYPER's gear system actually *speeds up* the TT motor (gains speed, loses torque) a little bit.
 
 ## Why I built PYPER
 I built PYPER to demonstrate the essential components required to build a *basic* RC car: a steering mechanism and a mid-mounted motor delivering power to the rear wheels through a multi-gear drivetrain. While many other models you can find online are very impressive, they tend to be overly complex and advanced, posing challenges for beginners to mechanical engineering to understand.
