@@ -9,7 +9,7 @@ The project is fully open source under the [**Creative Commons Attribution-NonCo
 ### PYPER Specifications
 - **Weight**, fully assembled: 23g
 - **Dimensions**: 173x213x76 mm (WxLxH)
-- **Gear Ratio**: PYPER uses a **48:1** [TT motor](https://www.amazon.com/gp/product/B09N6NXP4H/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) (*please note that, while the title of this product on Amazon states it is a 1:48 ratio, it is actually a 48:1 (reduction) gear ratio*) against a **4:5** 3D-printed compound gear system I developed. [This graphic](https://i.imgur.com/Yiz39RH.png) helped me calculate this ratio:
+- **Gear Ratio**: PYPER uses a **48:1** [TT motor](https://www.amazon.com/gp/product/B09N6NXP4H/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) (*please note that, while the title of this product on Amazon states it is a 1:48 ratio, [it is actually a 48:1 (reduction) gear ratio](https://www.reddit.com/r/MechanicalEngineering/comments/19cmjpy/do_these_amazon_sellers_have_their_gear_ratios/)*) against a **4:5** 3D-printed compound gear system I developed. [This graphic](https://i.imgur.com/Yiz39RH.png) helped me calculate this ratio:
     - Teeth on motor gear (gear attached to TT motor, receiving rotational input): **15**
     - Teeth on mid-axle gear (intermediary between motor gear and final drive shaft): **24**
     - Teeth on drive shaft gear: **12**
