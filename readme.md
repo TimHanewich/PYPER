@@ -80,9 +80,9 @@ These are how many of each metric screw specification you'll need:
 |M3*30mm|4|
 |M3*12mm|2|
 |M3*8mm|4|
-|M2*16mm|2|
 |M2*12mm|4|
 |M2*8mm|6|
+|M2*6mm|2|
 
 These are the specific needs for these screws in PYPER's design:
 - 2 M3*30mm for steering uprights
@@ -92,7 +92,7 @@ These are the specific needs for these screws in PYPER's design:
 - 4 M2*8mm for screwing in mid axle mount
 - 2 M3*30mm for screwing TT motor into TT frame
 - 2 M3*8mm for screwing TT frame into base
-- 2 M2*16mm for screwing in rear wheels
+- 2 M2*6mm for screwing in rear wheels
 - 2 M2*8mm for screwing in SG90 servo to frame
 
 ## Wiring up the Electronics
