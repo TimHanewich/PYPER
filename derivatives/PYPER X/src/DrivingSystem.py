@@ -19,6 +19,13 @@ class DrivingSystem:
         self.i1.start(0.0) # start at 0% duty cycle
         self.i2.start(0.0) # start at 0% duty cycle
 
+        # setup pigpio for front steering (RPi.GPIO is not accurate enough in its timing to be stable: https://ben.akrin.com/raspberry-pi-servo-jitter/)
+        self.pwm = pigpio.pi()
+        self.pwm.set_mode(settings.gpio_steer, pigpio.OUTPUT)
+        self.pwm.set_PWM_frequency(settings.gpio_steer, 50)
+
+    ############## DRIVE #################
+
     def enable_drive(self) -> None:
         GPIO.output(settings.gpio_drive_safety, GPIO.HIGH)
 
@@ -34,5 +41,14 @@ class DrivingSystem:
         else:
             self.i1.ChangeDutyCycle(0.0)
             self.i2.ChangeDutyCycle(power * -100)
+
+
+
+    ############ STEER ##################
+    def steer(self, steer:float) -> None:
+        s = max(min(steer, 1.0), -1.0) # constrain within bounds
+        spercent:float = (s + 1) / 2.0
+        width:int = int(500 + (spercent * (2500 - 500)))
+        self.pwm.set_PWM_pulsewidth(settings.gpio_steer, width)
 
 
