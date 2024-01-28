@@ -7,6 +7,11 @@ import socket
 import json
 import time
 import request_tools
+import RPi.GPIO as GPIO
+
+# Set up GPIO
+GPIO.setmode(GPIO.BCM) # use GPIO #'s, not pin numbers
+
 
 # Statistics that will be tracked
 stat_calls_received:int = 0
