@@ -49,6 +49,6 @@ class DrivingSystem:
         s = max(min(steer, 1.0), -1.0) # constrain within bounds
         spercent:float = (s + 1) / 2.0
         width:int = int(500 + (spercent * (2500 - 500)))
-        self.pwm.set_PWM_pulsewidth(settings.gpio_steer, width)
+        self.pwm.set_servo_pulsewidth(settings.gpio_steer, width)
 
 
