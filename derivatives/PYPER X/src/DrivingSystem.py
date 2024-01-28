@@ -25,13 +25,14 @@ class DrivingSystem:
     def disable_drive(self) -> None:
         GPIO.output(settings.gpio_drive_safety, GPIO.LOW)
     
+    # provide power as float between -1.0 and 1.0
     def drive(self, power:float) -> None:
         power = max(min(power, 1.0), -1.0) # constrain within bounds
         if power >= 0.0:
-            self.i1.ChangeDutyCycle(power)
+            self.i1.ChangeDutyCycle(power * 100)
             self.i2.ChangeDutyCycle(0.0)
         else:
             self.i1.ChangeDutyCycle(0.0)
-            self.i2.ChangeDutyCycle(power * -1)
+            self.i2.ChangeDutyCycle(power * -100)
 
 
