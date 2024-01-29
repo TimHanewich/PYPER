@@ -22,3 +22,10 @@ To ensure it is running:
 psx aux | grep pigpio
 ```
 You should see it running in there.
+
+## Starting up PYPER X
+- Plug in power. Allow it to boot.
+- SSH into it.
+- Run `pigpiod` daemeon: `sudo pigpiod`
+- Confirm `pigpiod` daemeon is running: `psx aux | grep pigpio`
+- Run `main.py` with **sudo permissions**: `sudo python main.py`
