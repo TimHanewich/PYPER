@@ -93,7 +93,7 @@ while True:
                 validations.append(validation)
         if len(validations) > 0:
             print("At least of the movement commands had validation issues!")
-            conn.send("HTTP/1.0 400 BAD REQUEST\r\n\r\nThere were validation issues with one or more of the movement commands provided: " + str(validations))
+            conn.send(("HTTP/1.0 400 BAD REQUEST\r\n\r\nThere were validation issues with one or more of the movement commands provided: " + str(validations)).encode())
             conn.close()
             continue
         print("Movement commands validated!")
@@ -107,7 +107,7 @@ while True:
             stat_movement_commands_executed = stat_movement_commands_executed + 1
 
         # respond with OK
-        conn.send("HTTP/1.0 200 OK\r\n\r\n")
+        conn.send("HTTP/1.0 200 OK\r\n\r\n".encode())
         conn.close()
 
     else:
