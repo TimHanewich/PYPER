@@ -8,10 +8,18 @@ import json
 import time
 import request_tools
 import RPi.GPIO as GPIO
+import MovementCommand
+import DrivingSystem
 
 # Set up GPIO
 GPIO.setmode(GPIO.BCM) # use GPIO #'s, not pin numbers
 
+
+# set up driving system
+ds = DrivingSystem.DrivingSystem()
+ds.enable_drive()
+ds.drive(0.0)
+ds.steer(0.0)
 
 # Statistics that will be tracked
 stat_calls_received:int = 0 # how many HTTP calls have been received
@@ -64,6 +72,44 @@ while True:
         response:str = "HTTP/1.0 200 OK\r\nContent-Type: application/json\r\n\r\n" + json.dumps(payload)
         conn.send(response.encode())
         conn.close()
+    elif req.method.lower() == "post" and req.path.lower() == "/move":
+        print("Movement command request received!")
+
+        # parse from body
+        mcs:list[MovementCommand.MovementCommand] = []
+        try:
+            mcs = MovementCommand.MovementCommand.parse(req.body)
+        except Exception as e:
+            conn.send(("HTTP/1.0 400 BAD REQUEST\r\n\r\nThere was an issue parsing the movement commands provided in the body! Msg: " + str(e)).encode())
+            conn.close()
+            continue
+        print(str(len(mcs)) + " movement commands received!")
+
+        # validate each movement command
+        validations:list[str] = []
+        for mc in mcs:
+            validation:str = mc.validate()
+            if validation != None:
+                validations.append(validation)
+        if len(validations) > 0:
+            print("At least of the movement commands had validation issues!")
+            conn.send("HTTP/1.0 400 BAD REQUEST\r\n\r\nThere were validation issues with one or more of the movement commands provided: " + str(validations))
+            conn.close()
+            continue
+        print("Movement commands validated!")
+
+        # execute each
+        for mc in mcs:
+            if mc != mcs[len(mcs) - 1]: # not the last one
+                ds.execute(mc, False) # do not stop at the end
+            else:
+                ds.execute(mc, True) # stop at the end of it
+            stat_movement_commands_executed = stat_movement_commands_executed + 1
+
+        # respond with OK
+        conn.send("HTTP/1.0 200 OK\r\n\r\n")
+        conn.close()
+
     else:
         print("It was an invalid request (invalid endpoint service)")
         conn.send("HTTP/1.0 404 NOT FOUND\r\n\r\n".encode())
