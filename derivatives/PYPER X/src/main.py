@@ -13,7 +13,7 @@ import DrivingSystem
 
 # Set up GPIO
 GPIO.setmode(GPIO.BCM) # use GPIO #'s, not pin numbers
-
+GPIO.setwarnings(False)
 
 # set up driving system
 ds = DrivingSystem.DrivingSystem()
