@@ -52,3 +52,15 @@ class DrivingSystem:
         self.pwm.set_servo_pulsewidth(settings.gpio_steer, width)
 
 
+
+
+    ############## HIGHER LEVEL #############
+        
+    def execute(self, mc:MovementCommand.MovementCommand, stop_at_end:bool = True) -> None:
+        self.steer(mc.steer)
+        self.drive(mc.drive)
+        time.sleep(mc.duration)
+        if stop_at_end:
+            self.drive(0.0) # stop driving
+
+
