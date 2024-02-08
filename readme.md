@@ -21,7 +21,11 @@ The project is fully open source under the [**Creative Commons Attribution-NonCo
     - Altogether, combining the **48:1** ratio of the TT motor against the **4:5** ratio of PYPER's fixed 3D-printed gear system, PYPER has a **192:5** gear ratio.
         - This means that pairing PYPER's 3D-printed gear system to the TT motor *speeds up* the TT motor slightly, gaining speed, but losing torque (going from gear ratio of **48.0** to **38.4**).
 
-## Why I built PYPER
+## How to Assemble PYPER
+You can watch the video below to see PYPER being built from the 3D-printed parts below, from the ground up. Click the image below to watch!
+[![pyper vid](https://i.imgur.com/V7dSgzl.png)](https://youtu.be/q6Mk3VrJAHo)
+
+## Why I Designed PYPER
 I built PYPER to demonstrate the essential components required to build a *basic* RC car: a steering mechanism and a mid-mounted motor delivering power to the rear wheels through a multi-gear drivetrain. While many other models you can find online are very impressive, they tend to be overly complex and advanced, posing challenges for beginners to mechanical engineering to understand.
 
 In contrast, PYPER is intentionally designed to be straightforward, accessible, and approachable for *anybody*. So, for the sake of learning, I describe PYPER and its systems (steering, drivetrain, code, etc.) below in detail.
