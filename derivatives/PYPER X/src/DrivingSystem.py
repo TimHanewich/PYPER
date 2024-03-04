@@ -62,15 +62,13 @@ class DrivingSystem:
         
     def execute(self, mc:MovementCommand.MovementCommand, stop_at_end:bool = True) -> None:
 
-        # steer smoothly
-        if self.__last_steer__ != None: # if there is a last steer, go from the current steerign angle (last steer) to the new steering angle smoothly
-            steer_segments:list[float] = steer_in_segments(self.__last_steer__, mc.steer)
-            for steer in steer_segments:
-                self.steer(steer)
-                time.sleep(0.1)
-        else: # if there isn't a list steer, just go straight to it.
-            self.steer(mc.steer)
-        self.__last_steer__ = mc.steer # set last steer angle
+        # steer, then wait a moment
+        time_to_wait:float = 0.3
+        if self.__last_steer__ != mc.steer and self.__last_steer__ != None:
+            steer_distance:float = abs(mc.steer - self.__last_steer__)
+            time_to_wait:float = 0.3 * steer_distance
+        self.steer(mc.steer)
+        time.sleep(time_to_wait)
 
         # accelerate up to full power smoothly. It can always be assumed that we are at 0% power (at a standstill) right now, so accelerate up from that.
         accelerate_segments:list[float] = accelerate_in_segments(mc.drive)
