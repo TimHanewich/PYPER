@@ -66,6 +66,7 @@ class DrivingSystem:
         if self.__last_steer__ != None: # if there is a last steer, go from the current steerign angle (last steer) to the new steering angle smoothly
             steer_segments:list[float] = steer_in_segments(self.__last_steer__, mc.steer)
             for steer in steer_segments:
+                print("Setting steer to " + str(steer))
                 self.steer(steer)
                 time.sleep(0.1)
         else: # if there isn't a list steer, just go straight to it.
