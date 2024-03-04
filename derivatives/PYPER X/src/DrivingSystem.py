@@ -100,6 +100,8 @@ def steer_in_segments(old_steer:float, new_steer:float) -> list[float]:
     jumps_needed:int = int(math.floor(steer_distance / min_gapper))
     if jumps_needed > 0:
         true_gapper:float = steer_distance / jumps_needed
+        if new_steer < old_steer:
+            true_gapper = true_gapper * -1
         ToReturn:list[float] = []
         for x in range(jumps_needed):
             ToReturn.append(old_steer + (true_gapper * x))
