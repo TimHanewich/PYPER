@@ -66,7 +66,7 @@ class DrivingSystem:
         time_to_wait:float = 0.3
         if self.__last_steer__ != mc.steer and self.__last_steer__ != None:
             steer_distance:float = abs(mc.steer - self.__last_steer__)
-            time_to_wait:float = 0.3 * steer_distance
+            time_to_wait:float = 0.15 * steer_distance
         self.steer(mc.steer)
         time.sleep(time_to_wait)
 
