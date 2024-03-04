@@ -78,6 +78,12 @@ class DrivingSystem:
             self.drive(power)
             time.sleep(0.1)
 
+        # decelerate smoothly
+        for x in range(len(accelerate_segments)):
+            ta:float = accelerate_segments[len(accelerate_segments) - x - 1]
+            self.drive(ta)
+            time.sleep(0.1)
+
         time.sleep(mc.duration)
         if stop_at_end:
             self.drive(0.0) # stop driving
