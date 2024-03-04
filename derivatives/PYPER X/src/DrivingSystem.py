@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 import time
 import MovementCommand
 import settings
+import math
 
 class DrivingSystem:
 
@@ -23,6 +24,9 @@ class DrivingSystem:
         self.pwm = pigpio.pi()
         self.pwm.set_mode(settings.gpio_steer, pigpio.OUTPUT)
         self.pwm.set_PWM_frequency(settings.gpio_steer, 50)
+
+        # internal variables to keep things smooth
+        self.__last_steer__:float = None
 
     ############## DRIVE #################
 
@@ -57,10 +61,56 @@ class DrivingSystem:
     ############## HIGHER LEVEL #############
         
     def execute(self, mc:MovementCommand.MovementCommand, stop_at_end:bool = True) -> None:
-        self.steer(mc.steer)
-        self.drive(mc.drive)
+
+        # steer smoothly
+        if self.__last_steer__ != None: # if there is a last steer, go from the current steerign angle (last steer) to the new steering angle smoothly
+            steer_segments:list[float] = steer_in_segments(self.__last_steer__, mc.steer)
+            for steer in steer_segments:
+                self.steer(steer)
+                time.sleep(0.1)
+        else: # if there isn't a list steer, just go straight to it.
+            self.steer(mc.steer)
+        self.__last_steer__ = mc.steer # set last steer angle
+
+        # accelerate up to full power smoothly. It can always be assumed that we are at 0% power (at a standstill) right now, so accelerate up from that.
+        accelerate_segments:list[float] = accelerate_in_segments(mc.drive)
+        for power in accelerate_segments:
+            self.drive(power)
+            time.sleep(0.1)
+
         time.sleep(mc.duration)
         if stop_at_end:
             self.drive(0.0) # stop driving
 
 
+
+def steer_in_segments(old_steer:float, new_steer:float) -> list[float]:
+    steer_distance = abs(new_steer - old_steer)
+    min_gapper:float = 0.15
+    jumps_needed:int = int(math.floor(steer_distance / min_gapper))
+    if jumps_needed > 0:
+        true_gapper:float = steer_distance / jumps_needed
+        ToReturn:list[float] = []
+        for x in range(jumps_needed):
+            ToReturn.append(old_steer + (true_gapper * x))
+        ToReturn.append(new_steer)
+        ToReturn.pop(0)
+        return ToReturn
+    else:
+        return [new_steer]
+
+
+def accelerate_in_segments(power:float) -> list[float]:
+    min_gapper:float = 0.1
+    jumps_needed:int = int(abs(math.floor(power / min_gapper)))
+    print(jumps_needed)
+    if jumps_needed > 0:
+        true_gapper:float = power / jumps_needed
+        ToReturn:list[float] = []
+        for x in range(jumps_needed):
+            ToReturn.append(true_gapper * x)
+        ToReturn.pop(0)
+        ToReturn.append(power)
+        return ToReturn
+    else:
+        return [power]
