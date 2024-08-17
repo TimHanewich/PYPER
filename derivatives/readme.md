@@ -1,2 +1,4 @@
 # PYPER Derivatives
 This folder contains spin-offs of the [original PYPER project in the parent of this folder](../readme.md).
+
+- [PYPER X](./PYPER%20X/) - A software version of PYPER that is designed to run on a full Linu**x** based operating system (Raspbian) via Raspberry Pi Zero W instead of the lightweight *MicroPython* library for the Raspberry Pi Pico W. This version was used in [a Microsoft Webinar that showcased on-premises data gateways](https://livesend.microsoft.com/i/NqaQHb___OBsMA0RCWxxyKORdH8U0E3GeFCTm8ZcE4dghBNMkQBrm1R8x1HwXorqGVOE3rqt3Hsn2wAaPLUSSIGNvX2WPbeb3NF8QT0h7gBdrG4QKlxYhIiSi1tYfUGPhWmtvaqbi).
