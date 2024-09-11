@@ -67,7 +67,7 @@ operational_status_last_sent:int = time.ticks_ms()
 while True:
 
     # try to receive message
-    print("Trying to receive a message...")
+    print(str(time.ticks_ms()) + " ms: Trying to receive a message...")
     rm:reyax.ReceivedMessage = lora.receive()
     if rm != None:
         print("A message has been received!")
