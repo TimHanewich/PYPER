@@ -49,7 +49,6 @@ print("LoRa connected!")
 # config lora
 print("Configuring LoRa...")
 lora.networkid = 18
-lora.address = 0
 lora.address = 1 # 0 = controller, 1 = rover
 lora.output_power = 22
 lora.band = 960000000 # set band to highest (fastest)
