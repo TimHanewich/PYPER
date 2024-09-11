@@ -9,3 +9,6 @@ gp_i2:int = 15
 # REYAX RYLR998 UART interface
 gp_lora_rx:int = 17 # the pin the raspberry pi will use to RECEIVE data to the RYLR998
 gp_lora_tx:int = 16 # the pin the raspberry pi will use to SEND data to the RYLR998
+
+# battery ADC
+gp_battery:int = 26 # the analog-to-digital pin that will be used to sense the battery state of charge (using a voltage divider)
