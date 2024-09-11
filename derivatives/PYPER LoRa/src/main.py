@@ -68,7 +68,9 @@ while True:
     # try to receive message
     print(str(time.ticks_ms()) + " ms: Trying to receive a message...")
     rm:reyax.ReceivedMessage = lora.receive()
-    if rm != None:
+    if rm == None:
+        print("No message available!")
+    else:
         print("A message has been received!")
 
         # pulse call?
@@ -93,6 +95,7 @@ while True:
 
     # time to send out op status?
     if (time.ticks_ms() - operational_status_last_sent) > 15000:
+        print("It is time to send an operational status!")
 
         # read battery state of charge (as a percentage)
         vbat_reading:int = battery_adc.read_u16() # read raw
@@ -103,8 +106,9 @@ while True:
         # pack up the response
         opstatus:bincomms.OperationalResponse = bincomms.OperationalResponse()
         opstatus.battery = soc
+        print("Sending operational status...")
         lora.send(0, opstatus.encode()) # send to controller
-        print("Just sent '" + str(opstatus.encode()) + "'!")
+        print("Just sent op status '" + str(opstatus.encode()) + "'!")
         operational_status_last_sent = time.ticks_ms()
 
     # wait
