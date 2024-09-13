@@ -94,7 +94,7 @@ while True:
             print("Message with body '" + str(rm.data) + "' received but of unknown format.")
 
     # time to send out op status?
-    if (time.ticks_ms() - operational_status_last_sent) > 8000:
+    if (time.ticks_ms() - operational_status_last_sent) > 8000: # send out every X seconds. Keep in mind this should be lower than the amount of time the LoRaLink controller will wait for a response and then raise the "NO RESP" flag.
         print("It is time to send an operational status!")
 
         # read battery state of charge (as a percentage)
