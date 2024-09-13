@@ -1,7 +1,7 @@
 import binary
 
-pulse_call:int = binary.bits_to_byte([True, False, False, False, False, False, False, False]) # Single-byte representation of a pulse call.
-pulse_echo:int = binary.bits_to_byte([True, True, False, False, False, False, False, False]) # Single-byte representation of a pulse echo.
+pulse_call:int = binary.bits_to_byte([True, False, False, False, False, False, False, False]) # Single-byte representation of a pulse call = 128
+pulse_echo:int = binary.bits_to_byte([True, True, False, False, False, False, False, False]) # Single-byte representation of a pulse echo = 192
 
 class OperationalCommand:
     def __init__(self) -> None:
@@ -95,7 +95,7 @@ class OperationalResponse:
         bat:float = min(max(self.battery, 0.0), 1.0)
         batint:int = int(bat * 63)
         batbits:list[bool] = binary.byte_to_bits(batint)
-        byte:int = binary.bits_to_byte([True, True, batbits[2], batbits[3], batbits[4], batbits[5], batbits[6], batbits[7]])
+        byte:int = binary.bits_to_byte([False, True, batbits[2], batbits[3], batbits[4], batbits[5], batbits[6], batbits[7]])
         return bytes([byte])
     
     def decode(self, bs:bytes) -> None:
