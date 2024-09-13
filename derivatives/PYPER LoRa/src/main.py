@@ -94,7 +94,7 @@ while True:
             print("Message with body '" + str(rm.data) + "' received but of unknown format.")
 
     # time to send out op status?
-    if (time.ticks_ms() - operational_status_last_sent) > 15000:
+    if (time.ticks_ms() - operational_status_last_sent) > 8000:
         print("It is time to send an operational status!")
 
         # read battery state of charge (as a percentage)
