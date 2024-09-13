@@ -111,8 +111,12 @@ while True:
         print("Just sent op status '" + str(opstatus.encode()) + "'!")
         operational_status_last_sent = time.ticks_ms()
 
-    # wait
+
+    # quick flash and then wait
+    led.off() # turn LED off for the short wait period. We just turn it off very briefly here so the user can see the loop is still running.
     time.sleep_ms(100) # wait. But keep in mind that the wait time here must be faster than the speed at which we expect the controller to send messages. Otherwise, they will build up.
+    led.on() # turn LED on when running the loop again.
+
 
 
 
