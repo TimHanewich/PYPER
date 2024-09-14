@@ -79,16 +79,21 @@ try:
         rm:reyax.ReceivedMessage = lora.receive()
         tools.log("Message read attempt (UART read) complete!")
         if rm == None:
+            tools.log("No message available!")
             print("No message available!")
         else:
+            tools.log("A message has been received!")
             print("A message has been received!")
 
             # pulse call?
             if bincomms.is_pulse_call(rm.data):
+                tools.log("Message is a pulse call.")
                 print("It is a pulse call!")
                 print("Sending back pulse echo now...")
                 lora.send(rm.address, bytes([bincomms.pulse_echo])) # send back a pulse echo to the address it was received from
             elif bincomms.is_OperationalCommand(rm.data):
+
+                tools.log("Message is an operational command!")
 
                 # decode
                 print("It was an operational command we received!")
@@ -101,9 +106,11 @@ try:
                 ds.steer(opcmd.steer)
 
             else:
+                tools.log("Message with body '" + str(rm.data) + "' received but of unknown format.")
                 print("Message with body '" + str(rm.data) + "' received but of unknown format.")
 
         # time to send out op status?
+        tools.log("Checking if time to send operational response...")
         if (time.ticks_ms() - operational_status_last_sent) > 8000: # send out every X seconds. Keep in mind this should be lower than the amount of time the LoRaLink controller will wait for a response and then raise the "NO RESP" flag.
             tools.log("It is time to send an operational status!")
             print("It is time to send an operational status!")
@@ -126,6 +133,7 @@ try:
             operational_status_last_sent = time.ticks_ms()
 
         # quick flash and then wait
+        tools.log("Entering waiting period where LED will be off...")
         led.off() # turn LED off for the short wait period. We just turn it off very briefly here so the user can see the loop is still running.
         time.sleep_ms(100) # wait. But keep in mind that the wait time here must be faster than the speed at which we expect the controller to send messages. Otherwise, they will build up.
         led.on() # turn LED on when running the loop again.
