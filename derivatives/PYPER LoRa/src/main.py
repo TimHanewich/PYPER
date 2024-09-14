@@ -124,4 +124,7 @@ try:
         led.on() # turn LED on when running the loop again.
 
 except Exception as e:
+    print("FATAL ERROR: " + str(e))
+    sys.print_exception(e)
     tools.log_exc(e)
+    print("Fatal error has been logged to log.txt")
