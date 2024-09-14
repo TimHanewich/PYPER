@@ -74,14 +74,11 @@ while True:
         print("A message has been received!")
 
         # pulse call?
-        if len(rm.data) == 1: # The first step to checking if it is a pulse call. (pulse call is only one byte)
-            if rm.data[0] == bincomms.pulse_call: # it is indeed a pulse call
-                print("It is a pulse call!")
-                print("Sending back pulse echo now...")
-                lora.send(rm.address, bytes([bincomms.pulse_echo])) # send back a pulse echo to the address it was received from
-            else:
-                print("It was a single byte message, but not a pulse call! Ignoring.")
-        elif len(rm.data) == len(bincomms.OperationalCommand().encode()):
+        if bincomms.is_pulse_call(rm.data):
+            print("It is a pulse call!")
+            print("Sending back pulse echo now...")
+            lora.send(rm.address, bytes([bincomms.pulse_echo])) # send back a pulse echo to the address it was received from
+        elif bincomms.is_OperationalCommand(rm.data):
 
             # decode
             print("It was an operational command we received!")
