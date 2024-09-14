@@ -52,7 +52,6 @@ try:
 
     # config lora
     tools.log("Configuring LoRa...")
-    tools.log("Configuring LoRa...")
     lora.networkid = 18
     lora.address = 1 # 0 = controller, 1 = rover
     lora.output_power = 22
@@ -72,22 +71,17 @@ try:
     while True:
 
         # try to receive message
-        tools.log(str(time.ticks_ms()) + " ms: Trying to receive a message...")
         tools.log("Trying to receive message via UART...")
         rm:reyax.ReceivedMessage = lora.receive()
         tools.log("Message read attempt (UART read) complete!")
         if rm == None:
             tools.log("No message available!")
-            tools.log("No message available!")
         else:
-            tools.log("A message has been received!")
             tools.log("A message has been received!")
 
             # pulse call?
             if bincomms.is_pulse_call(rm.data):
-                tools.log("Message is a pulse call.")
-                tools.log("It is a pulse call!")
-                tools.log("Sending back pulse echo now...")
+                tools.log("Message is a pulse call. Sending back pulse echo now...")
                 lora.send(rm.address, bytes([bincomms.pulse_echo])) # send back a pulse echo to the address it was received from
             elif bincomms.is_OperationalCommand(rm.data):
 
@@ -105,12 +99,10 @@ try:
 
             else:
                 tools.log("Message with body '" + str(rm.data) + "' received but of unknown format.")
-                tools.log("Message with body '" + str(rm.data) + "' received but of unknown format.")
 
         # time to send out op status?
         tools.log("Checking if time to send operational response...")
         if (time.ticks_ms() - operational_status_last_sent) > 8000: # send out every X seconds. Keep in mind this should be lower than the amount of time the LoRaLink controller will wait for a response and then raise the "NO RESP" flag.
-            tools.log("It is time to send an operational status!")
             tools.log("It is time to send an operational status!")
 
             # read battery state of charge (as a percentage)
@@ -123,10 +115,8 @@ try:
             # pack up the response
             opstatus:bincomms.OperationalResponse = bincomms.OperationalResponse()
             opstatus.battery = soc
-            tools.log("Sending operational status...")
             tools.log("Sending operational response...")
             lora.send(0, opstatus.encode()) # send to controller
-            tools.log("Operational response sent!")
             tools.log("Just sent op status '" + str(opstatus.encode()) + "'!")
             operational_status_last_sent = time.ticks_ms()
 
