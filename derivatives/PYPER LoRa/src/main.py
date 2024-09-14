@@ -1,7 +1,7 @@
-print("Hi, I'm PYPER LoRa, your Python-based 3D-Printed Electric Rover!")
-print("For more information about PYPER, visit https://github.com/TimHanewich/PYPER")
-print("PYPER is available under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 license")
-print("")
+tools.log("Hi, I'm PYPER LoRa, your Python-based 3D-Printed Electric Rover!")
+tools.log("For more information about PYPER, visit https://github.com/TimHanewich/PYPER")
+tools.log("PYPER is available under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 license")
+tools.log("")
 
 import machine
 import time
@@ -17,23 +17,21 @@ import sys
 try:
     
     # boot pattern
-    tools.log("Boot pattern...")
+    tools.log("Playing LED boot pattern...")
     led = machine.Pin("LED", machine.Pin.OUT)
-    print("Playing LED boot pattern...")
     for x in range(0, 5):
         led.toggle()
         time.sleep(0.25)
 
     # start up the Driving system
     tools.log("Initializing DrivingSystem...")
-    print("Initializing DrivingSystem...")
     ds:DrivingSystem.DrivingSystem = DrivingSystem.DrivingSystem()
     ds.enable_drive()
     ds.enable_steer()
-    print("Driving system ready!")
+    tools.log("Driving system ready!")
 
     # set up LoRa RYLR998
-    print("Setting up LoRa...")
+    tools.log("Setting up LoRa...")
     u = machine.UART(0, tx=machine.Pin(settings.gp_lora_tx), rx=machine.Pin(settings.gp_lora_rx), baudrate=115200)
     lora = reyax.RYLR998(u)
     lora_pulse_attempt:int = 0
@@ -42,7 +40,7 @@ try:
             break
         else:
             lora_pulse_attempt = lora_pulse_attempt + 1
-            print("LoRa not connected after " + str(lora_pulse_attempt) + " attempt. Will try again in a moment...")
+            tools.log("LoRa not connected after " + str(lora_pulse_attempt) + " attempt. Will try again in a moment...")
             time.sleep(0.5)
         if lora_pulse_attempt >= 10: # if cannot connect to LoRa after 10 attempts, infinite pattern
             while True:
@@ -50,17 +48,17 @@ try:
                 time.sleep(1)
                 led.off()
                 led.on()
-    print("LoRa connected!")
+    tools.log("LoRa connected!")
 
     # config lora
     tools.log("Configuring LoRa...")
-    print("Configuring LoRa...")
+    tools.log("Configuring LoRa...")
     lora.networkid = 18
     lora.address = 1 # 0 = controller, 1 = rover
     lora.output_power = 22
     lora.band = 960000000 # set band to highest (fastest)
     lora.rf_parameters = (7, 9, 1, 8) # Spreadig Factor of 7, Bandwidth of 500 KHz, Coding Rate of 1, Programmed Preamble of 8
-    print("LoRa configured!")
+    tools.log("LoRa configured!")
 
     # config other things
     tools.log("Configuring other things...")
@@ -74,32 +72,32 @@ try:
     while True:
 
         # try to receive message
-        print(str(time.ticks_ms()) + " ms: Trying to receive a message...")
+        tools.log(str(time.ticks_ms()) + " ms: Trying to receive a message...")
         tools.log("Trying to receive message via UART...")
         rm:reyax.ReceivedMessage = lora.receive()
         tools.log("Message read attempt (UART read) complete!")
         if rm == None:
             tools.log("No message available!")
-            print("No message available!")
+            tools.log("No message available!")
         else:
             tools.log("A message has been received!")
-            print("A message has been received!")
+            tools.log("A message has been received!")
 
             # pulse call?
             if bincomms.is_pulse_call(rm.data):
                 tools.log("Message is a pulse call.")
-                print("It is a pulse call!")
-                print("Sending back pulse echo now...")
+                tools.log("It is a pulse call!")
+                tools.log("Sending back pulse echo now...")
                 lora.send(rm.address, bytes([bincomms.pulse_echo])) # send back a pulse echo to the address it was received from
             elif bincomms.is_OperationalCommand(rm.data):
 
                 tools.log("Message is an operational command!")
 
                 # decode
-                print("It was an operational command we received!")
+                tools.log("It was an operational command we received!")
                 opcmd = bincomms.OperationalCommand()
                 opcmd.decode(rm.data)
-                print("OperationalCommand decoded: " + str(opcmd))
+                tools.log("OperationalCommand decoded: " + str(opcmd))
 
                 # set drive and steer according to command's wish
                 ds.drive(opcmd.throttle)
@@ -107,13 +105,13 @@ try:
 
             else:
                 tools.log("Message with body '" + str(rm.data) + "' received but of unknown format.")
-                print("Message with body '" + str(rm.data) + "' received but of unknown format.")
+                tools.log("Message with body '" + str(rm.data) + "' received but of unknown format.")
 
         # time to send out op status?
         tools.log("Checking if time to send operational response...")
         if (time.ticks_ms() - operational_status_last_sent) > 8000: # send out every X seconds. Keep in mind this should be lower than the amount of time the LoRaLink controller will wait for a response and then raise the "NO RESP" flag.
             tools.log("It is time to send an operational status!")
-            print("It is time to send an operational status!")
+            tools.log("It is time to send an operational status!")
 
             # read battery state of charge (as a percentage)
             tools.log("Collecting battery reading level...")
@@ -125,11 +123,11 @@ try:
             # pack up the response
             opstatus:bincomms.OperationalResponse = bincomms.OperationalResponse()
             opstatus.battery = soc
-            print("Sending operational status...")
+            tools.log("Sending operational status...")
             tools.log("Sending operational response...")
             lora.send(0, opstatus.encode()) # send to controller
             tools.log("Operational response sent!")
-            print("Just sent op status '" + str(opstatus.encode()) + "'!")
+            tools.log("Just sent op status '" + str(opstatus.encode()) + "'!")
             operational_status_last_sent = time.ticks_ms()
 
         # quick flash and then wait
@@ -139,7 +137,7 @@ try:
         led.on() # turn LED on when running the loop again.
 
 except Exception as e:
-    print("FATAL ERROR: " + str(e))
+    tools.log("FATAL ERROR: " + str(e))
     sys.print_exception(e)
     tools.log_exc(e)
-    print("Fatal error has been logged to log.txt")
+    tools.log("Fatal error has been logged to log.txt")
