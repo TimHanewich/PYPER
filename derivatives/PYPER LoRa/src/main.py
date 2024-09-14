@@ -15,9 +15,7 @@ import tools
 import sys
 
 try:
-
-    f = 1/0
-
+    
     # boot pattern
     led = machine.Pin("LED", machine.Pin.OUT)
     print("Playing LED boot pattern...")
