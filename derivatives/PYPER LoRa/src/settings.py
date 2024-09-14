@@ -12,3 +12,6 @@ gp_lora_tx:int = 16 # the pin the raspberry pi will use to SEND data to the RYLR
 
 # battery ADC
 gp_battery:int = 26 # the analog-to-digital pin that will be used to sense the battery state of charge (using a voltage divider)
+
+# diagnostic logging
+dlog:bool = True

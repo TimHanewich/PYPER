@@ -17,6 +17,7 @@ import sys
 try:
     
     # boot pattern
+    tools.log("Boot pattern...")
     led = machine.Pin("LED", machine.Pin.OUT)
     print("Playing LED boot pattern...")
     for x in range(0, 5):
@@ -24,6 +25,7 @@ try:
         time.sleep(0.25)
 
     # start up the Driving system
+    tools.log("Initializing DrivingSystem...")
     print("Initializing DrivingSystem...")
     ds:DrivingSystem.DrivingSystem = DrivingSystem.DrivingSystem()
     ds.enable_drive()
@@ -51,6 +53,7 @@ try:
     print("LoRa connected!")
 
     # config lora
+    tools.log("Configuring LoRa...")
     print("Configuring LoRa...")
     lora.networkid = 18
     lora.address = 1 # 0 = controller, 1 = rover
@@ -60,6 +63,7 @@ try:
     print("LoRa configured!")
 
     # config other things
+    tools.log("Configuring other things...")
     battery_adc:int = machine.ADC(machine.Pin(settings.gp_battery))
     battery_wac:WeightedAverageCalculator.WeightedAverageCalculator = WeightedAverageCalculator.WeightedAverageCalculator(0.98)
     batmon:BatteryMonitor.BatteryMonitor = BatteryMonitor.BatteryMonitor(BatteryMonitor.PROFILE_18650)
@@ -71,7 +75,9 @@ try:
 
         # try to receive message
         print(str(time.ticks_ms()) + " ms: Trying to receive a message...")
+        tools.log("Trying to receive message via UART...")
         rm:reyax.ReceivedMessage = lora.receive()
+        tools.log("Message read attempt (UART read) complete!")
         if rm == None:
             print("No message available!")
         else:
@@ -99,9 +105,11 @@ try:
 
         # time to send out op status?
         if (time.ticks_ms() - operational_status_last_sent) > 8000: # send out every X seconds. Keep in mind this should be lower than the amount of time the LoRaLink controller will wait for a response and then raise the "NO RESP" flag.
+            tools.log("It is time to send an operational status!")
             print("It is time to send an operational status!")
 
             # read battery state of charge (as a percentage)
+            tools.log("Collecting battery reading level...")
             vbat_reading:int = battery_adc.read_u16() # read raw
             vbat_reading_smoothed:int = int(battery_wac.feed(float(vbat_reading))) # pass it through a weighted average filter (smooth it out)
             battery_voltage:float = 3.01 + (((vbat_reading_smoothed - 38800) / (54000 - 38800)) * (4.21 - 3.01)) # calculate the voltage on the pin based upon a test of known values (tested reading at 4.2V and reading at 3.0V)
@@ -111,10 +119,11 @@ try:
             opstatus:bincomms.OperationalResponse = bincomms.OperationalResponse()
             opstatus.battery = soc
             print("Sending operational status...")
+            tools.log("Sending operational response...")
             lora.send(0, opstatus.encode()) # send to controller
+            tools.log("Operational response sent!")
             print("Just sent op status '" + str(opstatus.encode()) + "'!")
             operational_status_last_sent = time.ticks_ms()
-
 
         # quick flash and then wait
         led.off() # turn LED off for the short wait period. We just turn it off very briefly here so the user can see the loop is still running.
