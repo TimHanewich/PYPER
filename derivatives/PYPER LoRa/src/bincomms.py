@@ -59,16 +59,13 @@ class OperationalCommand:
     def decode(self, bs:bytes) -> None:
         """Decodes a two-byte sequence into a OperationalCommand."""
 
-        if len(bs) != 2:
-            raise Exception("Provided bytes are not a valid OperationalCommand! Length must be 2 bytes.")
+        # validate that it is an operational command
+        if is_OperationalCommand(bs) == False:
+            raise Exception("Provided bytes '" + str(bs) + "' are not a valid OperationalCommand! Cannot decode as one.")
         
         # decode
         b1bits:list[bool] = binary.byte_to_bits(bs[0])
         b2bits:list[bool] = binary.byte_to_bits(bs[1])
-
-        # check if the packet type identifier is correct (first two bytes)
-        if b1bits[0] == True or b1bits[1] == True:
-            raise Exception("Provided bytes are not an OperationalCommand! The packet type identifier did not match the OperationalCommand type.")
         
         # decode throttle
         throttle:int = binary.bits_to_byte([False, False, b1bits[3], b1bits[4], b1bits[5], b1bits[6], b1bits[7], b2bits[0]]) # convert the 6-bits into a value (lead with two empties)
@@ -100,18 +97,46 @@ class OperationalResponse:
     
     def decode(self, bs:bytes) -> None:
 
-        # check if length is correct
-        if len(bs) != 1:
-            raise Exception("Provided bytes of length " + str(len(bs)) + " is not a valid OperationalResponse. Length is not 1!")
+        # validate that it is an operational response
+        if is_OperationalResponse(bs) == False:
+            raise Exception("Provided bytes '" + str(bs) + "' is not a valid operational response! Cannot decode as one.")
         
         # convert
         bits:list[bool] = binary.byte_to_bits(bs[0])
-        
-        # check that type is correct
-        if bits[0] != True or bits[1] != True:
-            raise Exception("Provided bytes are not an OperationalResponse! The packet type identifier did not match the OperationalResponse type.")
         
         # convert to percentage
         batint:int = binary.bits_to_byte([False, False, bits[2], bits[3], bits[4], bits[5], bits[6], bits[7]])
         batf:float = batint / 63
         self.battery = batf
+
+# type checks
+
+def is_pulse_call(data:bytes) -> bool:
+    if len(data) != 1:
+        return False
+    else:
+        return data[0] == pulse_call
+
+def is_pulse_echo(data:bytes) -> bool:
+    if len(data) != 1:
+        return False
+    else:
+        return data[0] == pulse_echo
+
+def is_OperationalCommand(data:bytes) -> bool:
+    sample:bytes = OperationalCommand().encode()
+    if len(data) != len(sample):
+        return False
+    else:
+        bits:list[bool] = binary.byte_to_bits(data[0])
+        samplebits:list[bool] = binary.byte_to_bits(sample[0]) 
+        return bits[0] == samplebits[0] and bits[1] == samplebits[1]
+    
+def is_OperationalResponse(data:bytes) -> bool:
+    sample:bytes = OperationalResponse().encode()
+    if len(data) != len(sample):
+        return False
+    else:
+        bits:list[bool] = binary.byte_to_bits(data[0])
+        samplebits:list[bool] = binary.byte_to_bits(sample[0]) 
+        return bits[0] == samplebits[0] and bits[1] == samplebits[1]
