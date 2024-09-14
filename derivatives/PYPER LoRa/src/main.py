@@ -54,7 +54,7 @@ try:
     tools.log("Configuring LoRa...")
     lora.networkid = 18
     lora.address = 1 # 0 = controller, 1 = rover
-    lora.output_power = 22
+    lora.output_power = 12
     lora.band = 960000000 # set band to highest (fastest)
     lora.rf_parameters = (7, 9, 1, 8) # Spreadig Factor of 7, Bandwidth of 500 KHz, Coding Rate of 1, Programmed Preamble of 8
     tools.log("LoRa configured!")
