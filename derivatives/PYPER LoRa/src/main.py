@@ -16,6 +16,7 @@ import sys
 
 try:
 
+    f = 1/0
 
     # boot pattern
     led = machine.Pin("LED", machine.Pin.OUT)
@@ -123,4 +124,4 @@ try:
         led.on() # turn LED on when running the loop again.
 
 except Exception as e:
-    tools.log_error(sys.print_exception(e))
+    tools.log_exc(e)
