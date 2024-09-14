@@ -1,7 +1,7 @@
-tools.log("Hi, I'm PYPER LoRa, your Python-based 3D-Printed Electric Rover!")
-tools.log("For more information about PYPER, visit https://github.com/TimHanewich/PYPER")
-tools.log("PYPER is available under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 license")
-tools.log("")
+print("Hi, I'm PYPER LoRa, your Python-based 3D-Printed Electric Rover!")
+print("For more information about PYPER, visit https://github.com/TimHanewich/PYPER")
+print("PYPER is available under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 license")
+print("")
 
 import machine
 import time
