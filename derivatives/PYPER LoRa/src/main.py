@@ -87,8 +87,8 @@ while True:
             print("OperationalCommand decoded: " + str(opcmd))
 
             # set drive and steer according to command's wish
-            ds.drive = opcmd.throttle
-            ds.steer = opcmd.steer
+            ds.drive(opcmd.throttle)
+            ds.steer(opcmd.steer)
 
         else:
             print("Message with body '" + str(rm.data) + "' received but of unknown format.")
