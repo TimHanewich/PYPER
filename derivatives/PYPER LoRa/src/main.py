@@ -72,9 +72,9 @@ async def main():
         async def pulse() -> None:
             while True:
                 led.on()
-                await asyncio.sleep_ms(250)
+                await asyncio.sleep_ms(100)
                 led.off()
-                await asyncio.sleep_ms(250)
+                await asyncio.sleep_ms(100)
         asyncio.create_task(pulse()) # launch it
 
         # define and launch send operational response subroutine
