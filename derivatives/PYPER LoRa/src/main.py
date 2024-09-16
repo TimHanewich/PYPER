@@ -70,52 +70,18 @@ async def main():
 
         # define and launch LED blink subroutine
         async def pulse() -> None:
-            led.on()
-            asyncio.sleep_ms(250)
-            led.off()
-            asyncio.sleep_ms(250)
-        asyncio.create_task(pulse())
+            while True:
+                led.on()
+                await asyncio.sleep_ms(250)
+                led.off()
+                await asyncio.sleep_ms(250)
+        asyncio.create_task(pulse()) # launch it
 
+        # define and launch send operational response subroutine
+        async def op_resp_comms() -> None:
+            while True:
+                await asyncio.sleep_ms(8000) # every 8 seconds
 
-
-        # infinite loop to handle comms
-        led.on()
-        operational_status_last_sent:int = time.ticks_ms()
-        while True:
-
-            # try to receive message
-            tools.log("Trying to receive message via UART...")
-            rm:reyax.ReceivedMessage = lora.receive()
-            tools.log("Message read attempt (UART read) complete!")
-            if rm == None:
-                tools.log("No message available!")
-            else:
-                tools.log("A message has been received!")
-
-                # pulse call?
-                if bincomms.is_pulse_call(rm.data):
-                    tools.log("Message is a pulse call. Sending back pulse echo now...")
-                    lora.send(rm.address, bytes([bincomms.pulse_echo])) # send back a pulse echo to the address it was received from
-                elif bincomms.is_OperationalCommand(rm.data):
-
-                    tools.log("Message is an operational command!")
-
-                    # decode
-                    tools.log("It was an operational command we received!")
-                    opcmd = bincomms.OperationalCommand()
-                    opcmd.decode(rm.data)
-                    tools.log("OperationalCommand decoded: " + str(opcmd))
-
-                    # set drive and steer according to command's wish
-                    ds.drive(opcmd.throttle)
-                    ds.steer(opcmd.steer)
-
-                else:
-                    tools.log("Message with body '" + str(rm.data) + "' received but of unknown format.")
-
-            # time to send out op status?
-            tools.log("Checking if time to send operational response...")
-            if (time.ticks_ms() - operational_status_last_sent) > 8000: # send out every X seconds. Keep in mind this should be lower than the amount of time the LoRaLink controller will wait for a response and then raise the "NO RESP" flag.
                 tools.log("It is time to send an operational status!")
 
                 # read battery state of charge (as a percentage)
@@ -131,11 +97,51 @@ async def main():
                 tools.log("Sending operational response...")
                 lora.send(0, opstatus.encode()) # send to controller
                 tools.log("Just sent op status '" + str(opstatus.encode()) + "'!")
-                operational_status_last_sent = time.ticks_ms()
+        asyncio.create_task(op_resp_comms()) # launch it
 
-            # wait
-            tools.log("Waiting...")
-            await asyncio.sleep_ms(100)
+        # define and launch operational command receive and obey subroutine
+        async def op_cmd_comms() -> None:
+            while True:
+
+                # try to receive message
+                tools.log(str(time.ticks_ms()) + " ticks, ms: Trying to receive message via UART...")
+                rm:reyax.ReceivedMessage = lora.receive()
+                tools.log("Message read attempt (UART read) complete!")
+                if rm == None:
+                    tools.log("No message available!")
+                else:
+                    tools.log("A message has been received!")
+
+                    # pulse call?
+                    if bincomms.is_pulse_call(rm.data):
+                        tools.log("Message is a pulse call. Sending back pulse echo now...")
+                        lora.send(rm.address, bytes([bincomms.pulse_echo])) # send back a pulse echo to the address it was received from
+                    elif bincomms.is_OperationalCommand(rm.data):
+
+                        tools.log("Message is an operational command!")
+
+                        # decode
+                        tools.log("It was an operational command we received!")
+                        opcmd = bincomms.OperationalCommand()
+                        opcmd.decode(rm.data)
+                        tools.log("OperationalCommand decoded: " + str(opcmd))
+
+                        # set drive and steer according to command's wish
+                        ds.drive(opcmd.throttle)
+                        ds.steer(opcmd.steer)
+
+                    else:
+                        tools.log("Message with body '" + str(rm.data) + "' received but of unknown format.")
+
+                # wait
+                await asyncio.sleep_ms(100)
+        asyncio.create_task(op_cmd_comms()) # launch it
+
+        # now, with all subroutines launch, infinitely wait.
+        # we have to infinitely wait so the main thread doesn't shut down
+        while True:
+            await asyncio.sleep_ms(60000)
+
 
     except Exception as e:
         tools.log("FATAL ERROR: " + str(e))
