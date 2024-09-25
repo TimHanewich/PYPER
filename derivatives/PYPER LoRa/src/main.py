@@ -68,7 +68,7 @@ async def main():
         battery_wac:WeightedAverageCalculator.WeightedAverageCalculator = WeightedAverageCalculator.WeightedAverageCalculator(0.98)
         batmon:BatteryMonitor.BatteryMonitor = BatteryMonitor.BatteryMonitor(BatteryMonitor.PROFILE_18650)
 
-        # define and launch LED blink subroutine
+        # define and start LED blink subroutine
         async def pulse() -> None:
             while True:
                 led.on()
@@ -77,64 +77,72 @@ async def main():
                 await asyncio.sleep_ms(100)
         asyncio.create_task(pulse()) # launch it
 
-        # define and launch send operational response subroutine
+        # define and start send operational response subroutine (telemetry sent from rover to controler)
         async def op_resp_comms() -> None:
-            while True:
-                await asyncio.sleep_ms(8000) # every 8 seconds
+            try:
+                while True:
+                    await asyncio.sleep_ms(8000) # every 8 seconds
 
-                tools.log("It is time to send an operational status!")
+                    tools.log("It is time to send an operational status!")
 
-                # read battery state of charge (as a percentage)
-                tools.log("Collecting battery reading level...")
-                vbat_reading:int = battery_adc.read_u16() # read raw
-                vbat_reading_smoothed:int = int(battery_wac.feed(float(vbat_reading))) # pass it through a weighted average filter (smooth it out)
-                battery_voltage:float = 3.01 + (((vbat_reading_smoothed - 38800) / (54000 - 38800)) * (4.21 - 3.01)) # calculate the voltage on the pin based upon a test of known values (tested reading at 4.2V and reading at 3.0V)
-                soc:float = batmon.soc(battery_voltage) # you may be wondering "Well don't you have to un-do the voltage divider?". Normally, yes, we do. But when I laid out the math and did the min/max formula, I was already taking that into account. So therefore, we dont have to here!
+                    # read battery state of charge (as a percentage)
+                    tools.log("Collecting battery reading level...")
+                    vbat_reading:int = battery_adc.read_u16() # read raw
+                    vbat_reading_smoothed:int = int(battery_wac.feed(float(vbat_reading))) # pass it through a weighted average filter (smooth it out)
+                    battery_voltage:float = 3.01 + (((vbat_reading_smoothed - 38800) / (54000 - 38800)) * (4.21 - 3.01)) # calculate the voltage on the pin based upon a test of known values (tested reading at 4.2V and reading at 3.0V)
+                    soc:float = batmon.soc(battery_voltage) # you may be wondering "Well don't you have to un-do the voltage divider?". Normally, yes, we do. But when I laid out the math and did the min/max formula, I was already taking that into account. So therefore, we dont have to here!
 
-                # pack up the response
-                opstatus:bincomms.OperationalResponse = bincomms.OperationalResponse()
-                opstatus.battery = soc
-                tools.log("Sending operational response...")
-                lora.send(0, opstatus.encode()) # send to controller
-                tools.log("Just sent op status '" + str(opstatus.encode()) + "'!")
+                    # pack up the response
+                    opstatus:bincomms.OperationalResponse = bincomms.OperationalResponse()
+                    opstatus.battery = soc
+                    tools.log("Sending operational response...")
+                    lora.send(0, opstatus.encode()) # send to controller
+                    tools.log("Just sent op status '" + str(opstatus.encode()) + "'!")
+            except Exception as e:
+                tools.log("Error with operation response sending! " + str(e))
+                tools.log_exc(e, "Error with operation response sending!")
         asyncio.create_task(op_resp_comms()) # launch it
 
         # define and launch operational command receive and obey subroutine
         async def op_cmd_comms() -> None:
-            while True:
+            try:
+                while True:
 
-                # try to receive message
-                tools.log(str(time.ticks_ms()) + " ticks, ms: Trying to receive message via UART...")
-                rm:reyax.ReceivedMessage = lora.receive()
-                tools.log("Message read attempt (UART read) complete!")
-                if rm == None:
-                    tools.log("No message available!")
-                else:
-                    tools.log("A message has been received!")
-
-                    # pulse call?
-                    if bincomms.is_pulse_call(rm.data):
-                        tools.log("Message is a pulse call. Sending back pulse echo now...")
-                        lora.send(rm.address, bytes([bincomms.pulse_echo])) # send back a pulse echo to the address it was received from
-                    elif bincomms.is_OperationalCommand(rm.data):
-
-                        tools.log("Message is an operational command!")
-
-                        # decode
-                        tools.log("It was an operational command we received!")
-                        opcmd = bincomms.OperationalCommand()
-                        opcmd.decode(rm.data)
-                        tools.log("OperationalCommand decoded: " + str(opcmd))
-
-                        # set drive and steer according to command's wish
-                        ds.drive(opcmd.throttle)
-                        ds.steer(opcmd.steer)
-
+                    # try to receive message
+                    tools.log(str(time.ticks_ms()) + " ticks, ms: Trying to receive message via UART...")
+                    rm:reyax.ReceivedMessage = lora.receive()
+                    tools.log("Message read attempt (UART read) complete!")
+                    if rm == None:
+                        tools.log("No message available!")
                     else:
-                        tools.log("Message with body '" + str(rm.data) + "' received but of unknown format.")
+                        tools.log("A message has been received!")
 
-                # wait
-                await asyncio.sleep_ms(100)
+                        # pulse call?
+                        if bincomms.is_pulse_call(rm.data):
+                            tools.log("Message is a pulse call. Sending back pulse echo now...")
+                            lora.send(rm.address, bytes([bincomms.pulse_echo])) # send back a pulse echo to the address it was received from
+                        elif bincomms.is_OperationalCommand(rm.data):
+
+                            tools.log("Message is an operational command!")
+
+                            # decode
+                            tools.log("It was an operational command we received!")
+                            opcmd = bincomms.OperationalCommand()
+                            opcmd.decode(rm.data)
+                            tools.log("OperationalCommand decoded: " + str(opcmd))
+
+                            # set drive and steer according to command's wish
+                            ds.drive(opcmd.throttle)
+                            ds.steer(opcmd.steer)
+
+                        else:
+                            tools.log("Message with body '" + str(rm.data) + "' received but of unknown format.")
+
+                    # wait
+                    await asyncio.sleep_ms(100)
+            except Exception as e:
+                tools.log("Error with operational request receiving + obeying! " + str(e))
+                tools.log_exc(e, "Error with operational request receiving + obeying!")
         asyncio.create_task(op_cmd_comms()) # launch it
 
         # now, with all subroutines launch, infinitely wait.
