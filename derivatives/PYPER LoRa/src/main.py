@@ -75,7 +75,6 @@ async def main():
                 await asyncio.sleep_ms(100)
                 led.off()
                 await asyncio.sleep_ms(100)
-        asyncio.create_task(pulse()) # launch it
 
         # define and start send operational response subroutine (telemetry sent from rover to controler)
         async def op_resp_comms() -> None:
@@ -101,7 +100,6 @@ async def main():
             except Exception as e:
                 tools.log("Error with operation response sending! " + str(e))
                 tools.log_exc(e, "Error with operation response sending!")
-        asyncio.create_task(op_resp_comms()) # launch it
 
         # define and launch operational command receive and obey subroutine
         async def op_cmd_comms() -> None:
@@ -143,12 +141,12 @@ async def main():
             except Exception as e:
                 tools.log("Error with operational request receiving + obeying! " + str(e))
                 tools.log_exc(e, "Error with operational request receiving + obeying!")
-        asyncio.create_task(op_cmd_comms()) # launch it
 
-        # now, with all subroutines launch, infinitely wait.
-        # we have to infinitely wait so the main thread doesn't shut down
-        while True:
-            await asyncio.sleep_ms(60000)
+        # launch all 3 tasks
+        task_blinky = asyncio.create_task(pulse()) # onboard LED blinking
+        task_send = asyncio.create_task(op_resp_comms()) # sending telemetry
+        task_receive = asyncio.create_task(op_cmd_comms()) # receiving and obeying inputs
+        await asyncio.gather(task_blinky, task_send, task_receive) # infinitely wait for all 3 to complete (this will never happen, unless they error out, because they are infinitely running)
 
 
     except Exception as e:
