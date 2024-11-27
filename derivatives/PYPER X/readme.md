@@ -19,7 +19,7 @@ sudo pigpiod
 
 To ensure it is running:
 ```
-psx aux | grep pigpio
+ps aux | grep pigpio
 ```
 You should see it running in there.
 
